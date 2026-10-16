@@ -3,9 +3,13 @@ import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 import comark from 'comark-content/vite'
 import fs from 'comark-content/sources/fs'
+import shiki from '@comark/vue/plugins/shiki'
 import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
+
+// https://comark-vue.vercel.app/#/
+// https://github.com/comarkdown/comark/tree/main/examples/2.vite/vue
 
 // https://content.comark.dev/integrations/vite
 const content = comarkContent({
@@ -18,7 +22,9 @@ export default defineConfig({
         tailwindcss(),
         vue(),
         vueDevTools(),
-        comark({content})
+        comark({content}),
+        // https://comark.dev/rendering/vue#markdown-definemarkdowncomponent
+        shiki()
     ],
     resolve: {
         alias: {
