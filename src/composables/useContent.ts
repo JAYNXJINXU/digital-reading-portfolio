@@ -6,7 +6,7 @@ import snapshot from 'comark-content/sources/snapshot'
 
 export const content = comarkContent({
     // temporary
-    source: snapshot('/api/content/snapshot/default.json', '/api/content/manifest.json')
+    source: snapshot('/api/content/snapshot/default.json', '/api/content/manifest.json'),
 })
 
 export const version = ref(0)
