@@ -16,5 +16,7 @@ const color = computed(() => colorMap[props.type ?? 'info'])
 </script>
 
 <template>
-
+    <section>
+        <slot />
+    </section>
 </template>
