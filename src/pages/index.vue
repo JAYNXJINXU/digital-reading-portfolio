@@ -5,9 +5,13 @@ const content = await getAllContent()
 </script>
 
 <template>
-    <ul>
-        <li v-for="i in content" :key="i.slug">
-            {{ i.title }}
-        </li>
-    </ul>
+    <section>
+        <ul class="space-y-6">
+            <li v-for="c in content" :key="c.slug">
+                <RouterLink :to="`/content/${c.slug}`">
+                    <h1>{{ c.slug }}</h1>
+                </RouterLink>
+            </li>
+        </ul>
+    </section>
 </template>
