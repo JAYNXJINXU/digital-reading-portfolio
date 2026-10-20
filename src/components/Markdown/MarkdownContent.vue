@@ -4,7 +4,7 @@ import { catppuccinLight, catppuccinDark, type theme } from '@/composables/theme
 const props = withDefaults(defineProps<{
     theme?: theme
 }>(), {
-    theme: 'dark'
+    theme: 'light'
 })
 
 const themes = {
@@ -18,6 +18,7 @@ const themes = {
         props.theme].base,
         'rounded-xl border p-6',
         themes[props.theme].border,
+        themes[props.theme].text,
         ]">
         <slot />
     </section>
