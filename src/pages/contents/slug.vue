@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { getContent } from '@/lib/content'
-import { useRoute } from 'vue-router'
-import Alert from '@/components/Alert.vue'
 import { Markdown } from '@comark/vue'
+import { useRoute } from 'vue-router'
+import Alert from '@/components/Markdown/Alert.vue'
+import MarkdownContent from '@/components/Markdown/MarkdownContent.vue'
 
 const route = useRoute()
 const content = await getContent(route.params.slug as string)
+
+const components = {
+    markdownContent: MarkdownContent,
+    alert: Alert
+}
 </script>
 
 <template>
-    <article v-if="content">
+    <article>
         <header>
             <RouterLink to="/">
                 &larr; Back to all posts
@@ -17,7 +23,9 @@ const content = await getContent(route.params.slug as string)
             <h1>{{ content.title }}</h1>
         </header>
         <Suspense>
-            <Markdown :value="content.tree" :components="{ alert: Alert }" />
+            <MarkdownContent>
+                <Markdown :value="content.tree" :components="{ components }" />
+            </MarkdownContent>
         </Suspense>
     </article>
 </template>
