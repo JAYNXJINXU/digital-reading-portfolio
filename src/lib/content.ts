@@ -1,5 +1,16 @@
 import { parseMarkdown, type MarkdownDocument as Document } from 'comark'
 import shiki from '@comark/vue/plugins/shiki'
+import catppuccinFrappe from '@shikijs/themes/catppuccin-frappe'
+import catppuccinMacchiato from '@shikijs/themes/catppuccin-macchiato'
+
+const plugs = [
+    shiki({
+        themes: {
+            light: catppuccinFrappe,
+            dark: catppuccinMacchiato,
+        },
+    }),
+]
 
 const rawFiles = import.meta.glob('../../content/*.md', {
     query: '?raw',
@@ -49,7 +60,7 @@ export async function getContent(slug: string): Promise<Post> {
 
     const [, content] = entry
     const tree = await parseMarkdown(content, {
-        plugins: [shiki()],
+        plugins: plugs,
     })
 
     const fm = tree.frontmatter as Record<string, unknown>
