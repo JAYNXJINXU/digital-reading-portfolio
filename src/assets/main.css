@@ -3,12 +3,15 @@
 :root,
 :root[data-theme="light"]  {
     --app-bg: #fff;
+    --app-text: #fff;
 }
 
 :root[data-theme="dark"] {
     --app-bg: #000;
+    --app-text: #000;
 }
 
 @theme inline {
     --color-app-bg: var(--app-bg);
+    --color-app-text: var(--app-text);
 }

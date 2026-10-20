@@ -1,11 +1,13 @@
 export const catppuccinLight = {
     base: 'bg-[#eff1f5]',
     border: 'border-[#ccd0da]',
+    text: 'text-[#4c4f69]',
 }
 
 export const catppuccinDark = {
     base: 'bg-[#24273a]',
     border: 'border-[#494d64]',
+    text: 'text-[#cad3f5]',
 }
 
 export type theme = 'light' | 'dark'
