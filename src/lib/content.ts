@@ -1,15 +1,8 @@
 import { parseMarkdown, type MarkdownDocument as Document } from 'comark'
 import shiki from '@comark/vue/plugins/shiki'
-import catppuccinFrappe from '@shikijs/themes/catppuccin-frappe'
-import catppuccinMacchiato from '@shikijs/themes/catppuccin-macchiato'
 
 const plugs = [
-    shiki({
-        themes: {
-            light: catppuccinFrappe,
-            dark: catppuccinMacchiato,
-        },
-    }),
+    shiki()
 ]
 
 const rawFiles = import.meta.glob('../../content/*.md', {
