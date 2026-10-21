@@ -10,7 +10,7 @@
     --app-bg: #000;
     --app-text: #000;
 }
-
+/* https://shiki.matsu.io/guide/dual-themes -> check alongside tailwindcss theme switching */
 @theme inline {
     --color-app-bg: var(--app-bg);
     --color-app-text: var(--app-text);
