@@ -24,8 +24,8 @@ const components = {
             <h1>{{ content.title }}</h1>
         </header>
         <Suspense>
-            <MarkdownContent :theme="themeState">
-                <Markdown :value="content.tree" :components="{ components }" />
+            <MarkdownContent :theme="themeState || 'light'">
+                <Markdown :value="content.tree" :components="{ components }" id="md" />
             </MarkdownContent>
         </Suspense>
     </article>
