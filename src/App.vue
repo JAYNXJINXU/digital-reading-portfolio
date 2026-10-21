@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import Navbar from './components/Navbar.vue';
+
+</script>
+
 <!-- <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 </script>
@@ -84,6 +89,7 @@ nav a:first-of-type {
 </style> -->
 
 <template>
+    <Navbar />
     <Suspense>
         <!-- <RouterLink to="/">Blog</RouterLink> -->
          <template #default>
