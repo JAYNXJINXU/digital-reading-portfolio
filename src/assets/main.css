@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&::where(.dark, .dark *));
+
 :root,
 :root[data-theme="light"]  {
     --app-bg: #fff;
@@ -14,4 +16,8 @@
 @theme inline {
     --color-app-bg: var(--app-bg);
     --color-app-text: var(--app-text);
+}
+
+#md h1 {
+    font-size: 2em;
 }
