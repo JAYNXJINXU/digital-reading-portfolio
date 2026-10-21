@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { catppuccinLight, catppuccinDark, type theme } from '@/composables/themes'
+import { themes, type theme } from '@/composables/themes'
 
 const props = withDefaults(defineProps<{
     theme?: theme
 }>(), {
     theme: 'light'
 })
-
-const themes = {
-    light: catppuccinLight,
-    dark: catppuccinDark
-}
 </script>
 
 <template>

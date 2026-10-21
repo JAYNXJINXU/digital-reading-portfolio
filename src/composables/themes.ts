@@ -11,5 +11,10 @@ export const catppuccinDark = {
 }
 
 export type theme = 'light' | 'dark'
+
+export const themes = {
+    light: catppuccinLight,
+    dark: catppuccinDark
+}
 // https://github.com/nuxt/ui/blob/v4/src/theme/alert.ts -> reference
 /// https://flowbite.com/docs/components/alerts/
