@@ -1,8 +1,11 @@
 @import 'tailwindcss';
 
 @custom-variant dark (&::where(.dark, .dark *));
+/* figure out the dark mode stuff, probably from tailwindcss built-ins */
 
-:root,
+/* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
+
+/* :root,
 :root[data-theme="light"]  {
     --app-bg: #fff;
     --app-text: #fff;
@@ -11,13 +14,14 @@
 :root[data-theme="dark"] {
     --app-bg: #000;
     --app-text: #000;
-}
+} */
 /* https://shiki.matsu.io/guide/dual-themes -> check alongside tailwindcss theme switching */
-@theme inline {
+/* @theme inline {
     --color-app-bg: var(--app-bg);
     --color-app-text: var(--app-text);
-}
+} */
 
+/* use var(--app-**) here instead when dealing with colors */
 #md h1 {
     font-size: 2em;
 }
