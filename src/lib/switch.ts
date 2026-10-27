@@ -1,39 +1,60 @@
-import { onMounted, ref, watch } from 'vue'
+// https://tailwindcss.com/docs/dark-mode#with-system-theme-support
+import { computed, ref, watch } from 'vue'
 
-const themeMatch = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 
-const isDark = ref(false)
-export const themeState = ref('')
+const STORAGE_KEY = 'theme-preference'
 
-// onMounted(() => {
-//     isDark.value = themeMatch
+const themeArr = ['light', 'dark', 'system']
 
-//     document.documentElement.classList.toggle('dark')
+const preference = ref(localStorage.getItem(STORAGE_KEY) || 'system')
 
-//     themeState.value = isDark.value ? 'dark' : 'light'
-// })
+const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-isDark.value = themeMatch
+const systemIsDark = ref(mediaQuery.matches)
 
-themeState.value = isDark.value ? 'dark' : 'light'
-
-export const toggleDarkMode = () => {
-    isDark.value = !isDark.value
-}
-
-watch(isDark, (val) => {
-    document.documentElement.classList.toggle('dark', val)
-    themeState.value = val ? 'dark' : 'light'
+mediaQuery.addEventListener('change', (event) => {
+    systemIsDark.value = event.matches
 })
 
-// https://tailwindcss.com/docs/dark-mode#with-system-theme-support
-// document.documentElement.classList.toggle(
-//     'dark',
-//     localStorage.theme == 'dark' || (!('theme' in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
-// )
+export const themeState = computed(() => {
+    if (preference.value === 'system') {
+        return systemIsDark.value ? 'dark' : 'light'
+    }
 
-// localStorage.theme = 'light'
+    return preference.value
+})
 
-// localStorage.theme = 'dark'
+export function setTheme(value: string) {
+    if (themeArr.includes(value)) {
+        preference.value = value
+    }
+}
 
-// localStorage.removeItem('theme')
+export function toggleDarkMode() {
+    setTheme(themeState.value === 'dark' ? 'light' : 'dark')
+}
+
+watch(preference, (value) => {
+    localStorage.setItem(STORAGE_KEY, value)
+})
+
+watch(
+    themeState,
+    (value) => {
+        const isDark = value === 'dark'
+        const root = document.documentElement
+
+        root.dataset.theme = value
+        root.style.colorScheme = value
+
+        root.classList.toggle('dark', isDark)
+
+        console.log({
+            preference: preference.value,
+            systemIsDark: systemIsDark.value,
+            resolvedTheme: themeState.value,
+            mediaMatches: mediaQuery.matches
+        })
+    },
+    { immediate: true }
+)
