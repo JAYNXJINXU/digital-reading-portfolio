@@ -21,11 +21,12 @@ const components = {
             <RouterLink to="/">
                 &larr; Back to all posts
             </RouterLink>
+            <!-- add none, sparse and verbose -->
             <h1>{{ content.title }}</h1>
         </header>
         <Suspense>
             <MarkdownContent :theme="themeState || 'light'">
-                <Markdown :value="content.tree" :components="{ components }" id="md" />
+                <Markdown :value="content.tree" :components="{ components, Alert }" id="md" />
             </MarkdownContent>
         </Suspense>
     </article>
