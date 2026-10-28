@@ -16,6 +16,9 @@
     --app-text: #000;
 } */
 /* https://shiki.matsu.io/guide/dual-themes -> check alongside tailwindcss theme switching */
+/* https://shiki.matsu.io/themes */
+/* https://flowbite.com/docs/components/navbar/#default-navbar */
+/* https://flowbite.com/docs/components/alerts/#alerts-with-icon */
 /* @theme inline {
     --color-app-bg: var(--app-bg);
     --color-app-text: var(--app-text);
