@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 import comark from '@comark/vue/vite'
-import catppuccinFrappe from '@shikijs/themes/catppuccin-frappe'
+import catppuccinLatte from '@shikijs/themes/catppuccin-latte'
 import catppuccinMacchiato from '@shikijs/themes/catppuccin-macchiato'
 import shiki from '@comark/vue/plugins/shiki'
 import tailwindcss from '@tailwindcss/vite'
@@ -22,7 +22,7 @@ export default defineConfig({
         // https://comark.dev/rendering/vue#markdown-definemarkdowncomponent
         shiki({
             themes: {
-                light: catppuccinFrappe,
+                light: catppuccinLatte,
                 dark: catppuccinMacchiato
             }
         })
