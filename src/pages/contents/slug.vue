@@ -18,7 +18,7 @@ const components = {
 <template>
     <article>
         <header>
-            <RouterLink to="/">
+            <RouterLink to="/content">
                 &larr; Back to all posts
             </RouterLink>
             <!-- add none, sparse and verbose -->
