@@ -5,7 +5,7 @@ const plugs = [
     shiki()
 ]
 
-const rawFiles = import.meta.glob('../../content/*.md', {
+const rawFiles = import.meta.glob('../../content/**/*.md', {
     query: '?raw',
     import: 'default',
     eager: true,
