@@ -30,6 +30,12 @@ export const catppuccinDark = {
 
 export type theme = 'light' | 'dark'
 
+export const transition = 'transition-colors duration-300'
+
+export const sizings = {
+    fontAwesome: 'text-[2rem]'
+}
+
 export const themes = {
     light: catppuccinLight,
     dark: catppuccinDark
