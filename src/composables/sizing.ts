@@ -1,7 +1,7 @@
 type LayoutSize = 'compact' | 'standard' | 'wide'
 
 export const sizings = {
-    fontAwesome: 'text-[2rem]',
+    fontAwesomeFont: 'text-[2rem]',
     default: [
         'w-full',
         'min-w-0',
