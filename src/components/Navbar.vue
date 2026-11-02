@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { fontAwesomeStrings } from '@/composables/constants.ts'
 import { preference, setTheme, toggleTheme } from '@/lib/switch'
 import { sizings } from '@/composables/sizing'
 import { transition } from '@/composables/themes'
@@ -11,6 +12,7 @@ const handleThemeChange = (event: Event) => {
 }
 
 const modal = ref(false)
+const fa = fontAwesomeStrings
 
 const openModal = () => {
     modal.value = true
@@ -25,7 +27,7 @@ const closeModal = () => {
     <section class="w-full z-20 top-0">
         <Settings :modal="modal" @click.self="closeModal" @close="closeModal" />
         <section class="flex flex-wrap items-center justify-between mx-auto p-4">
-            <button @click="toggleTheme" :class="[preference == 'dark' ? 'fa-regular fa-moon' : preference == 'light' ? 'fa-regular fa-lightbulb' : 'fa-solid fa-gear', transition, sizings.fontAwesome]">
+            <button @click="toggleTheme" :class="[preference == 'dark' ? fa.moon : preference == 'light' ? fa.lightbulb : fa.gear, transition, sizings.fontAwesomeFont]">
                 <slot></slot>
             </button>
             <RouterLink to="/">About</RouterLink>
