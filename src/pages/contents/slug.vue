@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getContent } from '@/lib/content'
 import { Markdown } from '@comark/vue'
+import { Math } from '@comark/vue/plugins/math'
 import { themeState } from '@/lib/switch'
 import { useRoute } from 'vue-router'
 import Alert from '@/components/Markdown/Alert.vue'
@@ -11,7 +12,8 @@ const content = await getContent(route.params.slug as string)
 
 const components = {
     markdownContent: MarkdownContent,
-    alert: Alert
+    alert: Alert,
+    math: Math
 }
 </script>
 
@@ -26,7 +28,7 @@ const components = {
         </header>
         <Suspense>
             <MarkdownContent :theme="themeState || 'light'">
-                <Markdown :value="content.tree" :components="{ components, Alert }" id="md" />
+                <Markdown :value="content.tree" :components="{ ...components }" id="md" />
             </MarkdownContent>
         </Suspense>
     </article>
