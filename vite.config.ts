@@ -17,7 +17,6 @@ export default defineConfig({
         tailwindcss(),
         vue(),
         vueDevTools(),
-        // comark({content}),
         comark(),
         // https://comark.dev/rendering/vue#markdown-definemarkdowncomponent
         shiki({
@@ -27,6 +26,9 @@ export default defineConfig({
             }
         })
     ],
+    optimizeDeps: {
+        include: ['katex']
+    },
     resolve: {
         alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
