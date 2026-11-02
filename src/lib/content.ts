@@ -1,8 +1,10 @@
 import { parseMarkdown, type MarkdownDocument as Document } from 'comark'
+import math from '@comark/vue/plugins/math'
 import shiki from '@comark/vue/plugins/shiki'
 
 const plugs = [
-    shiki()
+    shiki(),
+    math()
 ]
 
 const rawFiles = import.meta.glob('../../content/**/*.md', {
@@ -16,7 +18,9 @@ export interface PostMeta {
     title: string
     description: string
     pubDate: string
+    modDate: string
     tags: string[]
+    authors: string[]
 }
 
 export interface Post extends PostMeta {
@@ -40,7 +44,9 @@ export async function getAllContent(): Promise<PostMeta[]> {
             title: fm.title as string,
             description: fm.description as string,
             pubDate: fm.pubDate as string,
+            modDate: fm.modDate as string,
             tags: (fm.tags as string[]) || [],
+            authors: (fm.authors as string[]) || [],
         })
     }
 
@@ -63,18 +69,9 @@ export async function getContent(slug: string): Promise<Post> {
         title: fm.title as string,
         description: fm.description as string,
         pubDate: fm.pubDate as string,
+        modDate: fm.modDate as string,
         tags: (fm.tags as string[]) || [],
+        authors: (fm.authors as string[]) || [],
         tree,
     }
 }
-
-// https://comark.dev/reference/parse#parsemarkdownsource-options
-// import { parseMarkdown } from 'comark'
-
-// const content = `---
-// title: Hello World
-// ---
-
-// This is simple example
-// `
-// export const result = await parseMarkdown(content)
