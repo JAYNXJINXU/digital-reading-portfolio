@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@comark/vue':
         specifier: ^0.7.0
-        version: 0.7.0(shiki@4.5.0)(vue@3.5.44(typescript@6.0.3))
+        version: 0.7.0(katex@0.19.1)(shiki@4.5.0)(vue@3.5.44(typescript@6.0.3))
       '@shikijs/langs':
         specifier: ^4.5.0
         version: 4.5.0
@@ -22,7 +22,10 @@ importers:
         version: 4.3.3(vite@8.3.4(@types/node@24.19.2)(jiti@2.7.0))
       comark:
         specifier: ^0.7.0
-        version: 0.7.0(shiki@4.5.0)
+        version: 0.7.0(katex@0.19.1)(shiki@4.5.0)
+      katex:
+        specifier: ^0.19.1
+        version: 0.19.1
       shiki:
         specifier: ^4.5.0
         version: 4.5.0
@@ -1169,6 +1172,10 @@ packages:
     resolution: {integrity: sha512-H+y0Jo/T1RZ9qPP4Eh1pkcQcLRglraJaSLoyOtHxu6AapkjWVCy2Sit1QQ4x3Dng8qDlSsZEet7g5Pq06MvTgw==}
     engines: {node: '>=20'}
 
+  commander@15.0.0:
+    resolution: {integrity: sha512-z67u4ZhzCL/Tydu1lJARtEZYWbWaN7oYLHbsuzocr6y4N6WZAagG3RQ4FW61V1/0+jImpj293XfrcYnd1qxtPg==}
+    engines: {node: '>=22.12.0'}
+
   confbox@0.1.8:
     resolution: {integrity: sha512-RMtmw0iFkeR4YV+fUOSucriAQNb9g8zFR52MWCtl+cCZOFRNL6zeB395vPzFhEjjn4fMxXudmELnl/KF/WrK6w==}
 
@@ -1570,6 +1577,10 @@ packages:
 
   jsonc-parser@3.3.1:
     resolution: {integrity: sha512-HUgH65KyejrUFPvHFPbqOY0rsFip3Bo5wb4ngvdi1EpCYWUQDC5V+Y7mZws+DLkr4M//zQJoanu1SP+87Dv1oQ==}
+
+  katex@0.19.1:
+    resolution: {integrity: sha512-jG8uKntjSEcm2EpQOh0XturpPuuC9r3Sq5HLHdsFdWZT27E672SF19QEi+of0/YeOy15lDgRhKvr5614uRrEfA==}
+    hasBin: true
 
   keyv@5.6.0:
     resolution: {integrity: sha512-CYDD3SOtsHtyXeEORYRx2qBtpDJFjRTGXUtmNEMGyzYOKj1TE3tycdlho7kA1Ufx9OYWZzg52QFBGALTirzDSw==}
@@ -2690,11 +2701,12 @@ snapshots:
       hashery: 1.5.1
       keyv: 5.6.0
 
-  '@comark/vue@0.7.0(shiki@4.5.0)(vue@3.5.44(typescript@6.0.3))':
+  '@comark/vue@0.7.0(katex@0.19.1)(shiki@4.5.0)(vue@3.5.44(typescript@6.0.3))':
     dependencies:
-      comark: 0.7.0(shiki@4.5.0)
+      comark: 0.7.0(katex@0.19.1)(shiki@4.5.0)
       vue: 3.5.44(typescript@6.0.3)
     optionalDependencies:
+      katex: 0.19.1
       shiki: 4.5.0
     transitivePeerDependencies:
       - rangi
@@ -3483,18 +3495,21 @@ snapshots:
     dependencies:
       readdirp: 5.1.1
 
-  comark@0.7.0(shiki@4.5.0):
+  comark@0.7.0(katex@0.19.1)(shiki@4.5.0):
     dependencies:
       entities: 8.1.0
       htmlparser2: 12.0.0
       js-yaml: 5.5.0
       markdown-exit: 1.1.0-beta.2
     optionalDependencies:
+      katex: 0.19.1
       shiki: 4.5.0
 
   comma-separated-tokens@2.0.3: {}
 
   commander@14.0.3: {}
+
+  commander@15.0.0: {}
 
   confbox@0.1.8: {}
 
@@ -3891,6 +3906,10 @@ snapshots:
   json5@2.2.3: {}
 
   jsonc-parser@3.3.1: {}
+
+  katex@0.19.1:
+    dependencies:
+      commander: 15.0.0
 
   keyv@5.6.0:
     dependencies:
