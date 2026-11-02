@@ -1,9 +1,22 @@
 import { parseMarkdown, type MarkdownDocument as Document } from 'comark'
+import catppuccinLatte from '@shikijs/themes/catppuccin-latte'
+import catppuccinMacchiato from '@shikijs/themes/catppuccin-macchiato'
+import go from '@shikijs/langs/go'
+import javascript from '@shikijs/langs/javascript'
 import math from '@comark/vue/plugins/math'
-import shiki from '@comark/vue/plugins/shiki'
+import python from '@shikijs/langs/python'
+import shiki from '@comark/vue/plugins/shiki/core'
+import typescript from '@shikijs/langs/typescript'
 
 const plugs = [
-    shiki(),
+    shiki({
+        preStyles: true,
+        themes: {
+            light: catppuccinLatte,
+            dark: catppuccinMacchiato
+        },
+        languages: [go, javascript, python, typescript],
+    }),
     math()
 ]
 
