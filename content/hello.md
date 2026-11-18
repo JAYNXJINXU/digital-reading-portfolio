@@ -9,11 +9,15 @@ authors: [Janky, Jaynx]
 
 # Hello World
 
+# Table of Contents
+* [Chapter 1](#chapter-1)
+* [Chapter 2](#chapter-2)
+
 ```js [server.js]
 const express = require('express')
 const app = express()
 ```
-
+---
 ```js
 type LayoutSize = 'compact' | 'standard' | 'wide'
 
@@ -43,7 +47,7 @@ export const sizings = {
     }
 }
 ```
-
+---
 ```go
 package main
 
@@ -86,7 +90,7 @@ func ClosingChannels() {
     fmt.Println("received more jobs:", ok)
 }
 ```
-
+---
 
 ~~Visual Studio Code~~
 
@@ -112,3 +116,7 @@ test built-in components
 *we really need a UI for this*
 
 ***we do need a UI for this***
+
+## <a id="chapter-1"></a>Chapter 1: The Beginning
+
+## <a id="chapter-2"><a>Chapter 2: Next Move
