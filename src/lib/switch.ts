@@ -59,5 +59,5 @@ watch(
         //     mediaMatches: mediaQuery.matches
         // })
     },
-    { immediate: true }
+    { immediate: true },
 )

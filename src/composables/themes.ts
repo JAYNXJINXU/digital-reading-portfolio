@@ -1,10 +1,12 @@
+import { ref } from 'vue'
+
 // https://catppuccin.com/palette/
 // SORT BY CATPPUCCIN PALETTE
 
 /*
-* LATTE
-*/
-export const catppuccinLight = {
+ * LATTE
+ */
+const catppuccinLight = {
     rosewater: 'bg-[#dc8a78]',
     flamingo: 'bg-[#dd7878]',
     pink: 'bg-[#ea76cb]',
@@ -34,9 +36,9 @@ export const catppuccinLight = {
 }
 
 /*
-* MACCHIATO
-*/
-export const catppuccinDark = {
+ * MACCHIATO
+ */
+const catppuccinDark = {
     rosewater: 'bg-[#f4dbd6]',
     flamingo: 'bg-[#f0c6c6]',
     pink: 'bg-[#f5bde6]',
@@ -65,13 +67,35 @@ export const catppuccinDark = {
     crust: 'border-[#181926]',
 }
 
-export type theme = 'light' | 'dark'
+export type Theme = 'light' | 'dark' | 'system'
 
-export const transition = 'transition-colors duration-300'
+export interface ThemeProps {
+    theme?: Theme
+}
 
 export const themes = {
     light: catppuccinLight,
-    dark: catppuccinDark
+    dark: catppuccinDark,
+}
+
+const systemIsDark = ref(
+    typeof window !== 'undefined'
+        ? window.matchMedia('(prefers-color-scheme: dark)').matches
+        : false,
+)
+
+if (typeof window !== 'undefined') {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    mediaQuery.addEventListener('change', (e) => {
+        systemIsDark.value = e.matches
+    })
+}
+
+export const resolveTheme = (theme: Theme): 'light' | 'dark' => {
+    if (theme === 'system') {
+        return systemIsDark.value ? 'dark' : 'light'
+    }
+    return theme
 }
 // https://github.com/nuxt/ui/blob/v4/src/theme/alert.ts -> reference
 // https://flowbite.com/docs/components/alerts/

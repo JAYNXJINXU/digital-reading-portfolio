@@ -117,6 +117,6 @@ test built-in components
 
 ***we do need a UI for this***
 
-## <a id="chapter-1"></a>Chapter 1: The Beginning
+## <a id="chapter-1" href="#chapter-1"></a>Chapter 1: The Beginning
 
-## <a id="chapter-2"><a>Chapter 2: Next Move
+## <a id="chapter-2" href="#chapter-2"><a>Chapter 2: Next Move

@@ -6,11 +6,11 @@ import NavBar from './components/NavBar.vue'
 <template>
     <NavBar />
     <Suspense>
-         <template #default>
+        <template #default>
             <main :class="[sizings.default, layoutSizeClass]">
-            <!-- add like refresh thingy for sizing here. -->
+                <!-- add like refresh thingy for sizing here. -->
                 <RouterView />
             </main>
-         </template>
+        </template>
     </Suspense>
 </template>

@@ -3,7 +3,7 @@
 /* @custom-variant dark (&::where(.dark, .dark *)); */
 /* figure out the dark mode stuff, probably from tailwindcss built-ins */
 
-/* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* https://shiki.matsu.io/guide/dual-themes -> check alongside tailwindcss theme switching */
 /* https://shiki.matsu.io/themes */
@@ -14,9 +14,96 @@
 #md h1 {
     font-size: 2em;
 }
+/* https://shiki.style/guide/dual-themes */
 
 /* @layer base {
     body * {
         @apply transition-colors duration-300 ease-in-out;
     }
 } */
+/* Force light theme variables by default */
+:root {
+    --shiki-light: inherit;
+    --shiki-dark: none;
+}
+
+/* Force dark theme variables when the dark class is active */
+html.dark,
+.dark {
+    --shiki-light: none !important;
+    --shiki-dark: inherit !important;
+}
+
+/* Alternative: If you use system preferences instead of a class toggle */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --shiki-light: none !important;
+        --shiki-dark: inherit !important;
+    }
+}
+
+pre.shiki {
+    /* Forces text wrapping and breaks long continuous strings if necessary */
+    @apply whitespace-pre-wrap wrap-break-word;
+
+    /* Disables horizontal scroll since text now wraps down */
+    @apply overflow-x-hidden;
+}
+
+/* Light mode defaults */
+:root {
+    --shiki-light-bg: #eff1f5; /* Catppuccin Latte base hex */
+}
+
+/* Dark mode overrides */
+.dark {
+    --shiki-dark-bg: #1e1e2e; /* Catppuccin Mocha base hex */
+}
+
+/* Bind them to your Comark / Shiki blocks */
+pre.shiki {
+    background-color: var(--shiki-light-bg) !important;
+}
+
+.dark pre.shiki {
+    background-color: var(--shiki-dark-bg) !important;
+}
+
+/* ==========================================================================
+   1. DEFAULT LIGHT THEME RULES (Catppuccin Latte)
+   ========================================================================== */
+:root {
+    --shiki-light: inherit;
+    --shiki-dark: none;
+    --shiki-light-bg: #eff1f5; /* Explicit Catppuccin Latte hex background */
+    --shiki-dark-bg: none;
+}
+
+/* Force standard container background for light mode */
+pre.shiki {
+    background-color: var(--shiki-light-bg) !important;
+}
+
+/* ==========================================================================
+   2. TAILWIND DARK MODE OVERRIDES (Catppuccin Mocha)
+   ========================================================================== */
+html.dark,
+.dark {
+    --shiki-light: none !important;
+    --shiki-dark: inherit !important;
+    --shiki-light-bg: none !important;
+    --shiki-dark-bg: #1e1e2e !important; /* Explicit Catppuccin Mocha hex background */
+}
+
+/* Force CSS Token mappings for dark elements */
+html.dark pre.shiki,
+.dark pre.shiki {
+    background-color: var(--shiki-dark-bg) !important;
+}
+
+html.dark pre.shiki span,
+.dark pre.shiki span {
+    color: var(--shiki-dark) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+}

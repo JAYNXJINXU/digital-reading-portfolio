@@ -33,18 +33,11 @@ export const setLayoutSize = (size: LayoutSize) => {
 
 export const sizings = {
     fontAwesomeFont: 'text-[2rem]',
-    default: [
-        'w-full',
-        'min-w-0',
-        'wrap-break-word',
-        'mx-auto',
-        'items-center',
-        'justify-center',
-    ],
+    default: ['w-full', 'min-w-0', 'wrap-break-word', 'mx-auto', 'items-center', 'justify-center'],
     /**
-    * size='standard' - A value where size is specified from 3 types(`compact`, `standard`, `wide`), defaults to `standard` if left blank.
-    */
-    defaults: (size: LayoutSize = 'standard') => sizeMap[size]
+     * size='standard' - A value where size is specified from 3 types(`compact`, `standard`, `wide`), defaults to `standard` if left blank.
+     */
+    defaults: (size: LayoutSize = 'standard') => sizeMap[size],
     // defaults: function(size: LayoutSize = 'standard'): string {
     //     return sizeMap[size]
     // }

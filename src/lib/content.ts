@@ -13,12 +13,14 @@ const plugs = [
         preStyles: true,
         themes: {
             light: catppuccinLatte,
-            dark: catppuccinMacchiato
+            dark: catppuccinMacchiato,
         },
         languages: [go, javascript, python, typescript],
     }),
-    math()
+    math(),
 ]
+
+type ContentEntry = 'content' | 'blog' | 'docs'
 
 const rawFiles = import.meta.glob('../../content/**/*.md', {
     query: '?raw',
@@ -41,7 +43,13 @@ export interface Post extends PostMeta {
 }
 
 function slugFromPath(path: string): string {
-    return path.split('/').pop()!.replace(/\.md$/, '')
+    // return path.split('/').pop()!.replace(/\.md$/, '')
+    return path
+        .split('/')
+        .pop()!
+        .replace(/\^.*\/content\//, '')
+        .replace(/\.md$/, '')
+    // return path.replace(/\^.*\/content\//, '').replace(/\.md$/, '')
 }
 
 export async function getAllContent(): Promise<PostMeta[]> {

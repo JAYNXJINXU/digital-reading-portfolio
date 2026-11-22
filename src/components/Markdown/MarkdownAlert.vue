@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { themes, type Theme } from '@/composables/themes'
-import { type AlertType ,useAlertVariant } from '@/composables/alert'
+import { type AlertType, useAlertVariant } from '@/composables/alert'
 
 // const props = defineProps<{
 //     type?: 'info' | 'warning' | 'success' | 'danger'
 // }>()
 
-const props = withDefaults(defineProps<{
-    type?: AlertType
-    theme?: Theme
-}>(), {
-    type: 'warning',
-    theme: 'system'
-})
+const props = withDefaults(
+    defineProps<{
+        type?: AlertType
+        theme?: Theme
+    }>(),
+    {
+        type: 'warning',
+        theme: 'system',
+    },
+)
 
 const alertClasses = useAlertVariant(
     () => props.type,

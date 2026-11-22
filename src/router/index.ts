@@ -8,7 +8,7 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            component: Index
+            component: Index,
         },
         {
             path: '/content',
@@ -18,7 +18,7 @@ const router = createRouter({
         {
             path: '/content/:slug',
             component: ContentPage,
-        }
+        },
     ],
 })
 
