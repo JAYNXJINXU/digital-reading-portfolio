@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import Navbar from './components/Navbar.vue'
-import { sizings } from './composables/sizing.ts'
-
+import { layoutSizeClass, sizings } from './composables/sizing.ts'
+import NavBar from './components/Navbar.vue'
 </script>
 
 <template>
-    <Navbar />
+    <NavBar />
     <Suspense>
          <template #default>
-            <main :class="[sizings.default, sizings.defaults()]">
+            <main :class="[sizings.default, layoutSizeClass]">
+            <!-- add like refresh thingy for sizing here. -->
                 <RouterView />
             </main>
          </template>
