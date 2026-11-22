@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { themes, type Theme } from '@/composables/themes'
+// import { computed } from 'vue'
+// import { themes, type Theme } from '@/composables/themes'
+// import { type AlertType, useAlertVariant } from '@/composables/alert'
+
+import { type Theme } from '@/composables/themes'
 import { type AlertType, useAlertVariant } from '@/composables/alert'
 
 // const props = defineProps<{

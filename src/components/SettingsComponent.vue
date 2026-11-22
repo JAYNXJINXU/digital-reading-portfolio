@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { fontAwesomeStrings, currentSettings } from '@/composables/constants'
-import { layoutSize, setLayoutSize, sizings } from '@/composables/sizing'
-import { preference, setTheme, themeState, toggleTheme } from '@/lib/switch'
-import { ref } from 'vue'
+// import { fontAwesomeStrings, currentSettings } from '@/composables/constants'
+// import { layoutSize, setLayoutSize, sizings } from '@/composables/sizing'
+// import { preference, setTheme, themeState, toggleTheme } from '@/lib/switch'
+// import { ref } from 'vue'
+
+import { currentSettings } from '@/composables/constants'
+import { layoutSize, setLayoutSize } from '@/composables/sizing'
+import { setTheme, themeState } from '@/lib/switch'
+// import { ref } from 'vue'
 
 const { modal } = defineProps<{
     modal?: boolean
