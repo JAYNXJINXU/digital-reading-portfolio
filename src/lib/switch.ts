@@ -1,10 +1,12 @@
-// https://tailwindcss.com/docs/dark-mode#with-system-theme-support
 import { computed, ref, watch } from 'vue'
-
 
 const STORAGE_KEY = 'theme-preference'
 
-const themeArr = ['light', 'dark', 'system']
+const themeArr = ['light', 'dark', 'system'] as const
+
+export type ThemePreference = (typeof themeArr)[number]
+
+export type ResolvedTheme = Exclude<ThemePreference, 'system'>
 
 export const preference = ref(localStorage.getItem(STORAGE_KEY) || 'system')
 
@@ -16,27 +18,22 @@ mediaQuery.addEventListener('change', (event) => {
     isSystemDarkMode.value = event.matches
 })
 
-export const themeState = computed(() => {
+export const themeState = computed<ResolvedTheme>(() => {
     if (preference.value === 'system') {
         return isSystemDarkMode.value ? 'dark' : 'light'
     }
 
-    return preference.value
+    return preference.value as ResolvedTheme
 })
 
 export function setTheme(value: string) {
-    if (themeArr.includes(value)) {
-        preference.value = value
+    if (themeArr.includes(value as ThemePreference)) {
+        preference.value = value as ThemePreference
     }
 }
 
 export function toggleTheme() {
-    if (themeState.value === 'system') {
-        setTheme(isSystemDarkMode.value ? 'light' : 'dark')
-    }
-    else {
-        setTheme(themeState.value === 'dark' ? 'light' : 'dark')
-    }
+    setTheme(themeState.value === 'dark' ? 'light' : 'dark')
 }
 
 watch(preference, (value) => {
@@ -55,12 +52,12 @@ watch(
 
         root.classList.toggle('dark', isDark)
 
-        console.log({
-            preference: preference.value,
-            isSystemDarkMode: isSystemDarkMode.value,
-            resolvedTheme: themeState.value,
-            mediaMatches: mediaQuery.matches
-        })
+        // console.log({
+        //     preference: preference.value,
+        //     isSystemDarkMode: isSystemDarkMode.value,
+        //     resolvedTheme: themeState.value,
+        //     mediaMatches: mediaQuery.matches
+        // })
     },
     { immediate: true }
 )
