@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { themes, type theme } from '@/composables/themes'
+import { themes, type Theme } from '@/composables/themes'
 import { type AlertType ,useAlertVariant } from '@/composables/alert'
 
 // const props = defineProps<{
@@ -9,10 +9,10 @@ import { type AlertType ,useAlertVariant } from '@/composables/alert'
 
 const props = withDefaults(defineProps<{
     type?: AlertType
-    theme?: theme
+    theme?: Theme
 }>(), {
     type: 'warning',
-    theme: 'light'
+    theme: 'system'
 })
 
 const alertClasses = useAlertVariant(
