@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import ContentPage from '@/pages/contents/slug.vue'
-import IndexPage from '@/pages/index.vue'
-import Index from '@/pages/landing/index.vue'
+import ContentPage from '@/pages/contents/MarkdownSlug.vue'
+import IndexPage from '@/pages/ContentList.vue'
+import Index from '@/pages/landing/JumbotronType.vue'
 
 const router = createRouter({
     history: createWebHashHistory(import.meta.env.BASE_URL),
