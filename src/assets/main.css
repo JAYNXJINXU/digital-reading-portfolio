@@ -14,6 +14,25 @@
 #md h1 {
     font-size: 2em;
 }
+
+#md table {
+    border: 1px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px 12px;
+}
+
+th {
+  background-color: transparent;
+}
+
 /* https://shiki.style/guide/dual-themes */
 
 /* @layer base {
