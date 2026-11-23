@@ -15,3 +15,11 @@ export const contentFiles = import.meta.glob('../../content/*.md', {
     import: 'default',
     eager: true,
 }) as Record<string, string>
+
+export const contentFilesByEntry = {
+    content: contentFiles,
+    blog: blogFiles,
+    members: memberFiles,
+} as const
+
+export type ContentEntry = keyof typeof contentFilesByEntry
