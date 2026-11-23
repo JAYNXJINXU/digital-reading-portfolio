@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { blogFiles } from '@/lib/glob'
 import { computed } from 'vue'
 import { getAllContent } from '@/lib/content'
 import { themes, type Theme } from '@/composables/themes'
 import { themeState } from '@/lib/switch'
 // import Spinner from '@/components/Spinner.vue'
 
-const content = await getAllContent()
+const content = await getAllContent(blogFiles)
 
 const props = defineProps<{
     theme?: Theme

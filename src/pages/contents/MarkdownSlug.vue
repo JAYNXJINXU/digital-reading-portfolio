@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { blogFiles } from '@/lib/glob'
 import { getContent } from '@/lib/content'
 import { Markdown } from '@comark/vue'
 import { Math } from '@comark/vue/plugins/math'
@@ -9,7 +10,7 @@ import MarkdownContent from '@/components/Markdown/MarkdownContent.vue'
 
 const route = useRoute()
 // this needs some attention
-const content = await getContent(route.params.slug as string)
+const content = await getContent(route.params.slug as string, blogFiles)
 
 const components = {
     markdownContent: MarkdownContent,
