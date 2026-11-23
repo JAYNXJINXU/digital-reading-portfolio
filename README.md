@@ -52,3 +52,4 @@ pnpm test:unit
 ```sh
 pnpm lint
 ```
+We can use imagekit for fetching images -> use .env file?
