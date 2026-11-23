@@ -1,7 +1,20 @@
+import type { LayoutSize } from './sizing'
+import { themes } from './themes'
+
 export const fontAwesomeStrings = {
     lightbulb: 'fa-regular fa-lightbulb',
     moon: 'fa-regular fa-moon',
     gear: 'fa-solid fa-gear',
+    home: 'fa-solid fa-house'
+}
+
+export const transition = {
+    transition: 'transition-all duration-300 ease-in-out',
+}
+
+export const navbar = {
+    nav: 'w-full z-20 top-0',
+    navSection: 'flex flex-wrap items-center justify-between mx-auto p-4'
 }
 
 export const jumbotron = {
@@ -10,13 +23,106 @@ export const jumbotron = {
     heading1: 'mb-6 text-4xl font-bold tracking-tighter text-heading md:text-5xl lg:text-6xl',
     text: 'mb-8 text-base font-normal text-body md:text-xl',
     relative: 'relative',
-    button: 'absolute end-1.5 bottom-1.5 font-medium leading-5 rounded text-xs px-3 py-1.5 hover:ring-1',
+    button: 'absolute end-1.5 bottom-1.5 font-medium leading-5 text-xs px-3 py-1.5 hover:ring-1',
 }
 
-export const transition = {
-    transition: 'transition-all duration-300 ease-in-out',
+export const modal = {
+    mainModal: 'fixed z-50 flex items-center justify-center w-full max-h-full p-4 overflow-x-hidden overflow-y-auto inset-0 bg-gray-900/70 backdrop-blur-sm',
+    side: 'min-h-150 max-h-150 w-60 py-10 px-4 flex flex-col items-end shrink-0',
+    nav: {
+        mainNav: 'w-48 space-y-0.5',
+        text: 'px-2.5 py-1.5 text-xs font-bold uppercase tracking-wider'
+    },
+    sideSetting: {
+        activeTabButton: 'w-full text-left px-2.5 py-1.5 text-[15px] font-medium my-2',
+        activeTabButtonText: 'ring-1',
+    },
+    setting: {
+        beforeMain: 'flex font-sane antialiased',
+        main: 'flex-1 py-10 px-12 min-h-150 max-h-150 min-w-180',
+        h1: 'text-xl font-semibold mb-6 ',
+        h2: 'text-l font-semibold mb-6',
+        h3: 'text-base font-semibold mb-6',
+        section1: 'flex items-center justify-between mb-6',
+        text1: 'text-[15px] font-medium',
+        themeSection: 'mb-8',
+        hr: 'my-6',
+        sectionFlex: 'flex items-center gap-4',
+        themeButtons1: 'relative w-13 h-13 border-2 focus:outline-none',
+        themeButtons2: 'relative w-13 h-13 border flex items-center justify-center',
+        sync1: ' ring-1',
+        span1: 'absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full flex items-center justify-center shadow',
+        ternarySync1: 'border-2',
+        ternarySync2: 'bg-transparent',
+        widthButtons: 'relative w-full my-2 p-2 border-2 focus:outline-none',
+        widthButtonsActive: 'relative w-full my-2 p-2 border-2 focus:outline-none'
+    },
+    content: {
+        placeholder: 'text-xl font-semibold capitalize mb-2'
+    }
 }
+
 
 export const currentSettings = {
     currentSetting: 'decoration-2 rounded ring-1 p-2',
+}
+
+export const settingsSidebarItems = {
+    appearance: {
+        id: 'appearance',
+        label: 'Appearance'
+    },
+    accessibility: {
+        id: 'content',
+        label: 'Content'
+    },
+}
+
+export const settingsThemes = {
+    light: {
+        id: 'light',
+        name: 'Light',
+        bgClass: themes.light.base,
+    },
+    dark: {
+        id: 'dark',
+        name: 'Dark',
+        bgClass: themes.dark.base,
+    }
+}
+
+export const settingsWidth: { id: LayoutSize, label: string, desc: string }[] =  [
+    {
+        id: 'compact',
+        label: 'Compact',
+        desc: 'Compact',
+    },
+    {
+        id: 'standard',
+        label: 'Standard',
+        desc: 'Standard',
+    },
+    {
+        id: 'wide',
+        label: 'wide',
+        desc: 'Wide',
+    }
+]
+
+export const settingsContent = {
+    title: {
+        id: 'title',
+        label: 'Title',
+        desc: 'Title only',
+    },
+    sparse: {
+        id: 'sparse',
+        label: 'Sparse',
+        desc: 'Title and Author',
+    },
+    verbose: {
+        id: 'verbose',
+        label: 'Verbose',
+        desc: 'Title, Author, and Publish Date',
+    },
 }
