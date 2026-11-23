@@ -1,17 +1,20 @@
 import { computed, ref } from 'vue'
 
-export type LayoutSize = 'compact' | 'standard' | 'wide'
+// export type LayoutSize = 'compact' | 'standard' | 'wide'
+
+export type LayoutSize = 'compact' | 'standard'
 
 const STORAGE_KEY = 'layout-size'
 
 const sizeMap: Record<LayoutSize, string> = {
     compact: 'max-w-[60rem]',
     standard: 'max-w-[80rem]',
-    wide: 'max-w-[100rem]',
+    // wide: 'max-w-[100rem]',
 }
 
 const isLayoutSize = (value: string | null): value is LayoutSize => {
-    return value == 'compact' || value == 'standard' || value == 'wide'
+    // return value == 'compact' || value == 'standard' || value == 'wide'
+    return value == 'compact' || value == 'standard'
 }
 
 const readSavedSize = (): LayoutSize => {
@@ -35,7 +38,7 @@ export const sizings = {
     fontAwesomeFont: 'text-[2rem]',
     default: ['w-full', 'min-w-0', 'wrap-break-word', 'mx-auto', 'items-center', 'justify-center'],
     /**
-     * size='standard' - A value where size is specified from 3 types(`compact`, `standard`, `wide`), defaults to `standard` if left blank.
+     * size='standard' - A value where size is specified from 3 types(`compact`, `standard`, `wide`(currently disabled)), defaults to `standard` if left blank.
      */
     defaults: (size: LayoutSize = 'standard') => sizeMap[size],
     // defaults: function(size: LayoutSize = 'standard'): string {

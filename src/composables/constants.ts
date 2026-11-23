@@ -102,11 +102,11 @@ export const settingsWidth: { id: LayoutSize, label: string, desc: string }[] = 
         label: 'Standard',
         desc: 'Standard',
     },
-    {
-        id: 'wide',
-        label: 'wide',
-        desc: 'Wide',
-    }
+    // {
+    //     id: 'wide',
+    //     label: 'wide',
+    //     desc: 'Wide',
+    // }
 ]
 
 export const settingsContent = {
