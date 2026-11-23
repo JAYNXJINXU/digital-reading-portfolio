@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 // import { resolveTheme, themes, type Theme } from '@/composables/themes'
 import { jumbotron, transition } from '@/composables/constants'
-import { jumbotronString } from '@/composables/strings'
+import { jumbotronString, jumbotronRouterString } from '@/composables/strings'
 import { themes, type Theme } from '@/composables/themes'
 import { themeState } from '@/lib/switch'
 
@@ -33,21 +33,21 @@ const t = computed(() => themes[rT.value])
         <RouterLink to="/content">
             <slot :class="[jumbotron.text, jumbotron.relative]">
                 <button :class="[jumbotron.button, transition.transition]">
-                    To content
+                    {{ jumbotronRouterString.content }}
                     <span> &rarr; </span>
                 </button>
             </slot>
         </RouterLink>
     </section>
-    <section class="flex flex-row gap-5">
+    <section class="flex flex-row gap-5 my-10">
         <section :class="[t.base, t.text, jumbotron.position]">
             <h1 :class="[jumbotron.heading1]">
-                {{ jumbotronString.mainHeader }}
+                {{ jumbotronString.names }}
             </h1>
             <RouterLink to="/content">
                 <slot :class="[jumbotron.text, jumbotron.relative]">
                     <button :class="[jumbotron.button, transition.transition]">
-                        To content
+                        {{ jumbotronRouterString.members }}
                         <span> &rarr; </span>
                     </button>
                 </slot>
@@ -55,12 +55,40 @@ const t = computed(() => themes[rT.value])
         </section>
         <section :class="[t.base, t.text, jumbotron.position]">
             <h1 :class="[jumbotron.heading1]">
-                {{ jumbotronString.mainHeader }}
+                {{ jumbotronString.whyDoThis }}
             </h1>
             <RouterLink to="/content">
                 <slot :class="[jumbotron.text, jumbotron.relative]">
                     <button :class="[jumbotron.button, transition.transition]">
-                        To content
+                        {{ jumbotronRouterString.reason }}
+                        <span> &rarr; </span>
+                    </button>
+                </slot>
+            </RouterLink>
+        </section>
+    </section>
+    <section class="flex flex-row gap-5 my-10">
+        <section :class="[t.base, t.text, jumbotron.position]">
+            <h1 :class="[jumbotron.heading1]">
+                {{ jumbotronString.PPE }}
+            </h1>
+            <RouterLink to="/content">
+                <slot :class="[jumbotron.text, jumbotron.relative]">
+                    <button :class="[jumbotron.button, transition.transition]">
+                        {{ jumbotronRouterString.content }}
+                        <span> &rarr; </span>
+                    </button>
+                </slot>
+            </RouterLink>
+        </section>
+        <section :class="[t.base, t.text, jumbotron.position]">
+            <h1 :class="[jumbotron.heading1]">
+                {{ jumbotronString.contentTest }}
+            </h1>
+            <RouterLink to="/content">
+                <slot :class="[jumbotron.text, jumbotron.relative]">
+                    <button :class="[jumbotron.button, transition.transition]">
+                        {{ jumbotronRouterString.noReason }}
                         <span> &rarr; </span>
                     </button>
                 </slot>
