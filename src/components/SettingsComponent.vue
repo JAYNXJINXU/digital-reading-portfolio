@@ -1,65 +1,147 @@
 <script setup lang="ts">
-// import { fontAwesomeStrings, currentSettings } from '@/composables/constants'
-// import { layoutSize, setLayoutSize, sizings } from '@/composables/sizing'
-// import { preference, setTheme, themeState, toggleTheme } from '@/lib/switch'
-// import { ref } from 'vue'
-
-import { currentSettings } from '@/composables/constants'
+import { computed, ref } from 'vue'
+import { modal, settingsSidebarItems, settingsThemes, settingsWidth, transition } from '@/composables/constants'
 import { layoutSize, setLayoutSize } from '@/composables/sizing'
 import { setTheme, themeState } from '@/lib/switch'
-// import { ref } from 'vue'
+import { resolveTheme, themes } from '@/composables/themes'
 
-const { modal } = defineProps<{
-    modal?: boolean
+const { modalToggle } = defineProps<{
+    modalToggle?: boolean
 }>()
 
-const cs = currentSettings.currentSetting
+const activeTab = ref('appearance')
 
-// defineEmits(['close'])
+const syncWithSystem = ref(false)
+const selectedTheme = ref(localStorage.getItem('theme-preference'))
+
+if (selectedTheme.value === 'system') {
+    syncWithSystem.value = true
+}
+
+const selectTheme = (themeId: string) => {
+    syncWithSystem.value = false
+    selectedTheme.value = themeId
+    setTheme(themeId)
+}
+
+const rT = computed(() => themeState.value)
+
+const tR = computed(() => themes[resolveTheme(rT.value)])
 </script>
 
 <template>
     <Transition name="fade">
-        <section
-            v-if="modal"
-            class="fixed z-50 flex items-center justify-center w-full max-h-full p-4 overflow-x-hidden overflow-y-auto inset-0 bg-gray-900/70 backdrop-blur-sm"
-            aria-modal="true"
-            role="dialog"
-            :class="{ 'opacity-0': !modal, 'opacity-100': modal }"
+        <section v-if="modalToggle"
+            :class="[modal.mainModal, { 'opacity-0': !modalToggle, 'opacity-100': modalToggle }]"
         >
-            <section
-                class="w-full max-w-lg max-h-[90vh] overflow-y-auto bg-white rounded-lg shadow dark:bg-gray-700 text-center p-6"
-            >
-                <!-- check -->
-                <!-- https://flowbite.com/docs/components/tabs/#tabs-with-underline -->
+            <aside :class="[modal.side, tR.base]">
+                <nav :class="modal.nav.mainNav">
+                    <p :class="[modal.nav.text, tR.text]">Settings</p>
+                    <button
+                        v-for="i in settingsSidebarItems" :key="i.id"           @click="activeTab = i.id"
+                        :class="[modal.sideSetting.activeTabButton, transition.transition, activeTab === i.id ? [modal.sideSetting.activeTabButtonText, tR.mantle, tR.subtext1] : [tR.mantle, tR.subtext1]]"
+                    >
+                        {{ i.label }}
+                    </button>
+                </nav>
+            </aside>
 
-                <button @click="setTheme('system')">System</button>
-                &nbsp;
-                <button @click="setTheme('light')" :class="themeState === 'light' ? cs : ''">
-                    Light
-                </button>
-                &nbsp;
-                <button @click="setTheme('dark')" :class="themeState === 'dark' ? cs : ''">
-                    Dark
-                </button>
-                &nbsp;
-                <button
-                    @click="setLayoutSize('compact')"
-                    :class="layoutSize === 'compact' ? cs : ''"
-                >
-                    Compact
-                </button>
-                &nbsp;
-                <button
-                    @click="setLayoutSize('standard')"
-                    :class="layoutSize === 'standard' ? cs : ''"
-                >
-                    Standard
-                </button>
-                &nbsp;
-                <button @click="setLayoutSize('wide')" :class="layoutSize === 'wide' ? cs : ''">
-                    Wide
-                </button>
+            <section :class="[modal.setting.beforeMain, tR.mantle, tR.subtext0]">
+                <main :class="modal.setting.main">
+                    <section v-if="activeTab === 'appearance'">
+                        <h1 :class="[modal.setting.h1, tR.text]">Appearance</h1>
+                        <section>
+                            <!-- <h2 :class="modal.setting.h2">Theme</h2>
+                            <section :class="modal.setting.section1">
+                                <button @click="toggleSystemSync; syncWithSystem = true; setTheme('system')"
+                                    :class="[
+                                    'relative inline-flex h-6 w-10 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none',
+                                    syncWithSystem ? 'bg-[#23a55a]' : 'bg-[#80848e]'
+                                ]">
+                                    <span
+                                        :class="[
+                                        'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
+                                        syncWithSystem ? 'translate-x-4' : 'translate-x-0'
+                                        ]"
+                                    />
+                                </button>
+                            </section> -->
+                            <section :class="modal.setting.themeSection">
+                                <h3 :class="[modal.setting.h3, tR.text]">Default Themes</h3>
+                                <section :class="modal.setting.sectionFlex">
+                                    <button
+                                        v-for="t in settingsThemes"
+                                        :key="t.id"
+                                        :title="t.name"
+                                        @click="selectTheme(t.id); syncWithSystem = false"
+                                        :class="[
+                                        modal.setting.themeButtons1,
+                                        t.bgClass,
+                                        !syncWithSystem && selectedTheme === t.id
+                                            ? [modal.setting.sync1, tR.lavender, tR.mantle]
+                                            : `hover:${tR.crust}`
+                                        ]"
+                                    >
+                                        <span
+                                            v-if="!syncWithSystem && selectedTheme === t.id"
+                                            :class="[modal.setting.span1, tR.lavender, tR.text]"
+                                            >
+                                            <svg class="w-3 h-3 stroke-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                    <button
+                                        @click="syncWithSystem = true; setTheme('system')"
+                                        :class="[
+                                        [modal.setting.themeButtons2, tR.text, tR.crust, transition.transition],
+                                        syncWithSystem
+                                            ? [modal.setting.ternarySync1, tR.mauve, tR.text, tR.base]
+                                            : [modal.setting.ternarySync2, tR.crust]
+                                        ]"
+                                    >
+                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                        </svg>
+                                            <span
+                                            v-if="syncWithSystem"
+                                            :class="[
+                                                modal.setting.span1
+                                            ]"
+                                            >
+                                                <svg class="w-3 h-3 stroke-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </span>
+                                    </button>
+                                </section>
+
+                                <hr :class="[modal.setting.hr, tR.mantle]" />
+
+                                <section>
+                                    <h2 :class="modal.setting.h2">Width</h2>
+                                    <section
+                                        v-for="o in settingsWidth"
+                                        :key="o.id"
+                                    >
+                                    <button
+                                        @click="setLayoutSize(o.id)"
+                                        :title="o.desc"
+                                        :class="[
+                                            [modal.setting.text1, tR.text],
+                                            layoutSize == o.id ? [modal.setting.widthButtonsActive, tR.surface2] :  [modal.setting.widthButtons, `hover:${tR.surface0}`]
+                                        ]"
+                                    >{{ o.label }}</button>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    <section v-if="activeTab === 'content'">
+                        <h1 :class="[modal.content.placeholder, tR.text]">{{ activeTab }}</h1>
+                        <p class="text-sm">Settings content for {{ activeTab }} goes here.</p>
+                    </section>
+                </main>
             </section>
         </section>
     </Transition>
