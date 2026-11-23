@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { modal, settingsSidebarItems, settingsThemes, settingsWidth, transition } from '@/composables/constants'
+import { modal, settingsSidebarItems, settingsThemes, settingsWidth } from '@/composables/constants'
 import { layoutSize, setLayoutSize } from '@/composables/sizing'
 import { setTheme, themeState } from '@/lib/switch'
 import { resolveTheme, themes } from '@/composables/themes'
@@ -39,7 +39,7 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
                     <p :class="[modal.nav.text, tR.text]">Settings</p>
                     <button
                         v-for="i in settingsSidebarItems" :key="i.id"           @click="activeTab = i.id"
-                        :class="[modal.sideSetting.activeTabButton, transition.transition, activeTab === i.id ? [modal.sideSetting.activeTabButtonText, tR.mantle, tR.subtext1] : [tR.mantle, tR.subtext1]]"
+                        :class="[modal.sideSetting.activeTabButton, activeTab === i.id ? [modal.sideSetting.activeTabButtonText, tR.mantle, tR.subtext1] : [tR.mantle, tR.subtext1]]"
                     >
                         {{ i.label }}
                     </button>
@@ -94,7 +94,7 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
                                     <button
                                         @click="syncWithSystem = true; setTheme('system')"
                                         :class="[
-                                        [modal.setting.themeButtons2, tR.text, tR.crust, transition.transition],
+                                        [modal.setting.themeButtons2, tR.text, tR.crust],
                                         syncWithSystem
                                             ? [modal.setting.ternarySync1, tR.mauve, tR.text, tR.base]
                                             : [modal.setting.ternarySync2, tR.crust]
