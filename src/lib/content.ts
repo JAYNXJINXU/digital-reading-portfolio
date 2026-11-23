@@ -20,14 +20,6 @@ const plugs = [
     math(),
 ]
 
-type ContentEntry = 'content' | 'blog' | 'docs'
-
-const rawFiles = import.meta.glob('../../content/**/*.md', {
-    query: '?raw',
-    import: 'default',
-    eager: true,
-}) as Record<string, string>
-
 export interface PostMeta {
     slug: string
     title: string
@@ -52,10 +44,10 @@ function slugFromPath(path: string): string {
     // return path.replace(/\^.*\/content\//, '').replace(/\.md$/, '')
 }
 
-export async function getAllContent(): Promise<PostMeta[]> {
+export async function getAllContent(glob: Record<string, string>): Promise<PostMeta[]> {
     const posts: PostMeta[] = []
 
-    for (const [path, content] of Object.entries(rawFiles)) {
+    for (const [path, content] of Object.entries(glob)) {
         const slug = slugFromPath(path)
         const tree = await parseMarkdown(content)
         const fm = tree.frontmatter as Record<string, unknown>
@@ -74,8 +66,8 @@ export async function getAllContent(): Promise<PostMeta[]> {
     return posts.sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf())
 }
 
-export async function getContent(slug: string): Promise<Post> {
-    const entry = Object.entries(rawFiles).find(([path]) => slugFromPath(path) === slug)
+export async function getContent(slug: string, glob: Record<string, string>): Promise<Post> {
+    const entry = Object.entries(glob).find(([path]) => slugFromPath(path) === slug)
     if (!entry) throw new Error(`Post not found: ${slug}`)
 
     const [, content] = entry
