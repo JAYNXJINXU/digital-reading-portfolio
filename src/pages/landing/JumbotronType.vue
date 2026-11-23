@@ -6,12 +6,6 @@ import { jumbotronString, jumbotronRouterString } from '@/composables/strings'
 import { themes, type Theme } from '@/composables/themes'
 import { themeState } from '@/lib/switch'
 
-// const props = withDefaults(defineProps<{
-//     theme?: Theme
-// }>(), {
-//     theme: 'system'
-// })
-
 const props = defineProps<{
     theme?: Theme
 }>()
@@ -19,8 +13,6 @@ const props = defineProps<{
 const rT = computed(() =>
     props.theme === 'light' || props.theme === 'dark' ? props.theme : themeState.value,
 )
-
-// const t = computed(() => themes[resolveTheme(props.theme)])
 
 const t = computed(() => themes[rT.value])
 </script>
