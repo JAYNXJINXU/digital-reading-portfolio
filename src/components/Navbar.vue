@@ -33,7 +33,6 @@ const t = computed(() => themes[rT.value])
 
 </script>
 
-<!-- add the themes later, bottom-x border as well -->
 <template>
     <section :class="[navbar.nav]">
         <Settings :modal-toggle="modal" @click.self="closeModal" @close="closeModal" />
