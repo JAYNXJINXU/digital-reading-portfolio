@@ -18,12 +18,14 @@ export const navbar = {
 }
 
 export const jumbotron = {
+    table: 'my-10 columns-1 gap-5 sm:columns-2 2xl:columns-2',
     background: 'backdrop-blur-sm',
     position: 'py-8 px-4 mx-auto text-center lg:py-16 z-10 relative',
     heading1: 'mb-6 text-4xl font-bold tracking-tighter text-heading md:text-5xl lg:text-6xl',
     text: 'mb-8 text-base font-normal text-body md:text-xl',
     relative: 'relative',
     button: 'absolute end-1.5 bottom-1.5 font-medium leading-5 text-xs px-3 py-1.5 hover:ring-1',
+    card: 'mb-5 inline-block w-full break-inside-avoid min-h-53'
 }
 
 export const modal = {
@@ -58,10 +60,22 @@ export const modal = {
         widthButtonsActive: 'relative w-full my-2 p-2 border-2 focus:outline-none'
     },
     content: {
-        placeholder: 'text-xl font-semibold capitalize mb-2'
+        placeholderHeader: 'text-xl font-semibold capitalize mb-2',
+        placeholderText: 'text-sm'
     }
 }
 
+export const contentList = {
+    routerLinkBack: 'inline-block border px-4 py-2.5 mt-5',
+    grid: 'my-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-10',
+    gridContent: 'bg-neutral-primary-soft block p-6 border border-default shadow-xs',
+    h5: 'mt-6 mb-2 text-2xl font-semibold tracking-tight text-heading',
+    routerLinkGo: 'inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none',
+    p: 'mb-6 text-body',
+    palceholderImage: {
+        link: 'https://placehold.co/160x90?font=roboto'
+    }
+}
 
 export const currentSettings = {
     currentSetting: 'decoration-2 rounded ring-1 p-2',
@@ -72,7 +86,7 @@ export const settingsSidebarItems = {
         id: 'appearance',
         label: 'Appearance'
     },
-    accessibility: {
+    content: {
         id: 'content',
         label: 'Content'
     },
