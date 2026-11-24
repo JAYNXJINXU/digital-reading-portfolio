@@ -1,45 +1,25 @@
 @import 'tailwindcss';
 
 /* @custom-variant dark (&::where(.dark, .dark *)); */
-/* figure out the dark mode stuff, probably from tailwindcss built-ins */
-
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-/* https://shiki.matsu.io/guide/dual-themes -> check alongside tailwindcss theme switching */
-/* https://shiki.matsu.io/themes */
-/* https://flowbite.com/docs/components/navbar/#default-navbar */
-/* https://flowbite.com/docs/components/alerts/#alerts-with-icon */
-
-/* use var(--app-**) here instead when dealing with colors */
+/* MARKDOWN */
 #md h1 {
     font-size: 2em;
 }
 
 #md table {
     border: 1px;
+    border-collapse: collapse;
+    width: 100%;
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
+#md th, td {
   border: 1px solid black;
   padding: 8px 12px;
 }
+/* MARKDOWN */
 
-th {
-  background-color: transparent;
-}
-
-/* https://shiki.style/guide/dual-themes */
-
-/* @layer base {
-    body * {
-        @apply transition-colors duration-300 ease-in-out;
-    }
-} */
 /* Force light theme variables by default */
 :root {
     --shiki-light: inherit;
