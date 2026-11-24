@@ -66,6 +66,13 @@ const cardSpecs = [
         heading: jumbotronString.contentTest,
         button: jumbotronRouterString.noReason,
     },
+    {
+        id: 'root-content',
+        entry: 'content',
+        slug: 'root-content',
+        heading: jumbotronString.rootContent,
+        button: jumbotronRouterString.blank,
+    },
 ] satisfies CardSpec[]
 
 export const cards = cardSpecs.map((c) => ({
