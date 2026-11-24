@@ -27,6 +27,11 @@ const selectTheme = (themeId: string) => {
 const rT = computed(() => themeState.value)
 
 const tR = computed(() => themes[resolveTheme(rT.value)])
+
+// close button, not yet implemented
+// const emit = defineEmits<{
+//     (e: 'close'): void
+// }>()
 </script>
 
 <template>
@@ -78,7 +83,7 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
                                         modal.setting.themeButtons1,
                                         t.bgClass,
                                         !syncWithSystem && selectedTheme === t.id
-                                            ? [modal.setting.sync1, tR.lavender, tR.mantle]
+                                            ? [modal.setting.sync1, tR.mantle]
                                             : `hover:${tR.crust}`
                                         ]"
                                     >
@@ -138,8 +143,10 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
                         </section>
                     </section>
                     <section v-if="activeTab === 'content'">
-                        <h1 :class="[modal.content.placeholder, tR.text]">{{ activeTab }}</h1>
-                        <p class="text-sm">Settings content for {{ activeTab }} goes here.</p>
+                        <h1 :class="[modal.content.placeholderHeader, tR.text]">{{ activeTab }}</h1>
+                        <section :class="[modal.content.placeholderText, tR.subtext0]">
+                            <p>Settings for {{ activeTab }} tab goes here.</p>
+                        </section>
                     </section>
                 </main>
             </section>
