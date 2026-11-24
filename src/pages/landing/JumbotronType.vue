@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-// import { resolveTheme, themes, type Theme } from '@/composables/themes'
 import { jumbotron, transition } from '@/composables/constants'
-import { jumbotronString, jumbotronRouterString } from '@/composables/strings'
 import { themes, type Theme } from '@/composables/themes'
 import { themeState } from '@/lib/switch'
+
+import { cards } from '@/lib/contentEntry'
 
 const props = defineProps<{
     theme?: Theme
@@ -16,75 +16,34 @@ const rT = computed(() =>
 
 const t = computed(() => themes[rT.value])
 </script>
-<!-- change to jumbotron with cards -->
+
 <template>
-    <section :class="[t.base, t.text, jumbotron.position, 'my-6']">
-        <h1 :class="[jumbotron.heading1]">
-            {{ jumbotronString.mainHeader }}
-        </h1>
-        <RouterLink to="/content">
-            <slot :class="[jumbotron.text, jumbotron.relative]">
+    <section :class="jumbotron.table">
+        <article
+            v-for="card in cards"
+            :key="card.id"
+            :class="[
+                t.base,
+                t.text,
+                jumbotron.position,
+                jumbotron.background,
+                jumbotron.card,
+            ]"
+        >
+            <h2 :class="jumbotron.heading1">
+                {{ card.post?.title ?? card.heading }}
+            </h2>
+
+            <p v-if="card.post?.description" :class="jumbotron.text">
+                {{ card.post.description }}
+            </p>
+
+            <RouterLink :to="{ path: '/content', query: { entry: card.entry } }">
                 <button :class="[jumbotron.button, transition.transition]">
-                    {{ jumbotronRouterString.content }}
-                    <span> &rarr; </span>
+                    {{ card.button }}
+                    <span>&rarr;</span>
                 </button>
-            </slot>
-        </RouterLink>
-    </section>
-    <section class="flex flex-row gap-5 my-10">
-        <section :class="[t.base, t.text, jumbotron.position]">
-            <h1 :class="[jumbotron.heading1]">
-                {{ jumbotronString.names }}
-            </h1>
-            <RouterLink to="/content">
-                <slot :class="[jumbotron.text, jumbotron.relative]">
-                    <button :class="[jumbotron.button, transition.transition]">
-                        {{ jumbotronRouterString.members }}
-                        <span> &rarr; </span>
-                    </button>
-                </slot>
             </RouterLink>
-        </section>
-        <section :class="[t.base, t.text, jumbotron.position]">
-            <h1 :class="[jumbotron.heading1]">
-                {{ jumbotronString.whyDoThis }}
-            </h1>
-            <RouterLink to="/content">
-                <slot :class="[jumbotron.text, jumbotron.relative]">
-                    <button :class="[jumbotron.button, transition.transition]">
-                        {{ jumbotronRouterString.reason }}
-                        <span> &rarr; </span>
-                    </button>
-                </slot>
-            </RouterLink>
-        </section>
-    </section>
-    <section class="flex flex-row gap-5 my-10">
-        <section :class="[t.base, t.text, jumbotron.position]">
-            <h1 :class="[jumbotron.heading1]">
-                {{ jumbotronString.PPE }}
-            </h1>
-            <RouterLink to="/content">
-                <slot :class="[jumbotron.text, jumbotron.relative]">
-                    <button :class="[jumbotron.button, transition.transition]">
-                        {{ jumbotronRouterString.content }}
-                        <span> &rarr; </span>
-                    </button>
-                </slot>
-            </RouterLink>
-        </section>
-        <section :class="[t.base, t.text, jumbotron.position]">
-            <h1 :class="[jumbotron.heading1]">
-                {{ jumbotronString.contentTest }}
-            </h1>
-            <RouterLink to="/content">
-                <slot :class="[jumbotron.text, jumbotron.relative]">
-                    <button :class="[jumbotron.button, transition.transition]">
-                        {{ jumbotronRouterString.noReason }}
-                        <span> &rarr; </span>
-                    </button>
-                </slot>
-            </RouterLink>
-        </section>
+        </article>
     </section>
 </template>
