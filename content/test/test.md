@@ -1,11 +1,20 @@
 # TEST BLOG
 
-![vue.js](https://img.icons8.com/?size=100&id=rY6agKizO9eb&format=png&color=000000)
-![vite](https://img.icons8.com/?size=100&id=YO3YqSaTOu5K&format=png&color=000000)
-![typescript](https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000)
-![nodejs](https://img.icons8.com/?size=100&id=54087&format=png&color=000000)
-![markdown](https://img.icons8.com/?size=100&id=21831&format=png&color=000000)
-![netlify](https://img.icons8.com/?size=100&id=rD15EcpCkinR&format=png&color=000000)
+<!-- ![vue.js](https://img.icons8.com/?size=100&id=rY6agKizO9eb&format=png&color=000000) -->
+<!-- ![vite](https://img.icons8.com/?size=100&id=YO3YqSaTOu5K&format=png&color=000000) -->
+<!-- ![typescript](https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000) -->
+<!-- ![nodejs](https://img.icons8.com/?size=100&id=54087&format=png&color=000000) -->
+<!-- ![markdown](https://img.icons8.com/?size=100&id=21831&format=png&color=000000) -->
+<!-- ![netlify](https://img.icons8.com/?size=100&id=rD15EcpCkinR&format=png&color=000000) -->
+
+
+### Used Technologies : 
+<img src="https://img.icons8.com/?size=100&id=rY6agKizO9eb&format=png&color=000000" alt="vue.js" title="vue.js" />
+<img src="https://img.icons8.com/?size=100&id=YO3YqSaTOu5K&format=png&color=000000" alt="vite" title="vite" />
+<img src="https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000" alt="typescript" title="typescript" />
+<img src="https://img.icons8.com/?size=100&id=54087&format=png&color=000000" alt="nodejs" title="nodejs" />
+<img src="https://img.icons8.com/?size=100&id=21831&format=png&color=000000" alt="markdown" title="markdown" />
+<img src="https://img.icons8.com/?size=100&id=rD15EcpCkinR&format=png&color=000000" alt="netlify" title="netlify" />
 
 |                    | m1(kg) | m2(kg) | u1(m/s) | u2(m/s) | v1(m/s) | v2(m/s) | p1i | p1f   | p2i | p2f  |
 | ------------------ | ------ | ------ | ------- | ------- | ------- | ------- | --- | ----- | --- | ---- |

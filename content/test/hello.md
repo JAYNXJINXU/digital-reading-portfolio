@@ -9,42 +9,69 @@ authors: [Janky, Jaynx]
 
 # Hello World
 
-# Table of Contents
+<!-- # Table of Contents
 * [Chapter 1](#chapter-1)
-* [Chapter 2](#chapter-2)
+* [Chapter 2](#chapter-2) -->
 
+::codeBlock{file="/src/composables/sizing.ts" lang="typescript"}
+<!-- /src/composables/sizing.ts - typescript -->
+```typescript
+const hello = 'world'
+```
+::
+---
 ```js [server.js]
 const express = require('express')
 const app = express()
 ```
 ---
 ```js
-type LayoutSize = 'compact' | 'standard' | 'wide'
+import { computed, ref } from 'vue'
+
+// export type LayoutSize = 'compact' | 'standard' | 'wide'
+
+export type LayoutSize = 'compact' | 'standard'
+
+const STORAGE_KEY = 'layout-size'
+
+const sizeMap: Record<LayoutSize, string> = {
+    compact: 'max-w-[60rem]',
+    standard: 'max-w-[80rem]',
+    // wide: 'max-w-[100rem]',
+}
+
+const isLayoutSize = (value: string | null): value is LayoutSize => {
+    // return value == 'compact' || value == 'standard' || value == 'wide'
+    return value == 'compact' || value == 'standard'
+}
+
+const readSavedSize = (): LayoutSize => {
+    if (typeof window == 'undefined') return 'standard'
+
+    const saved = localStorage.getItem(STORAGE_KEY)
+    return isLayoutSize(saved) ? saved : 'standard'
+}
+export const layoutSize = ref<LayoutSize>(readSavedSize())
+export const layoutSizeClass = computed(() => sizeMap[layoutSize.value])
+
+export const setLayoutSize = (size: LayoutSize) => {
+    layoutSize.value = size
+
+    if (typeof window !== 'undefined') {
+        localStorage.setItem(STORAGE_KEY, size)
+    }
+}
 
 export const sizings = {
     fontAwesomeFont: 'text-[2rem]',
-    default: [
-        'w-full',
-        'min-w-0',
-        'wrap-break-word',
-        'mx-auto',
-        'items-center',
-        'justify-center'
-    ],
+    default: ['w-full', 'min-w-0', 'wrap-break-word', 'mx-auto', 'items-center', 'justify-center'],
     /**
-    * @param {string} size size='standard' - A value where size is specified from 3 types(`compact`, `standard`, `wide`), defaults to `standard` if left blank.
-    * @returns {string} Returns the size specified, else fallback to `standard`.
-    *
-    */
-    defaults: function(size: LayoutSize = 'standard'): string {
-        const sizeMap: Record<LayoutSize, string> = {
-            compact: 'max-w-[60rem]',
-            standard: 'max-w-[80rem]',
-            wide: 'max-w-[100rem]'
-        }
-
-        return sizeMap[size]
-    }
+     * size='standard' - A value where size is specified from 3 types(`compact`, `standard`, `wide`(currently disabled)), defaults to `standard` if left blank.
+     */
+    defaults: (size: LayoutSize = 'standard') => sizeMap[size],
+    // defaults: function(size: LayoutSize = 'standard'): string {
+    //     return sizeMap[size]
+    // }
 }
 ```
 ---
@@ -97,8 +124,20 @@ func ClosingChannels() {
 https://github.com/comarkdown/comark/tree/main/examples/2.vite/vue
 https://comark.dev/examples/vite/vue
 
+::alert{type="info"}
+This is a info message!
+::
+
+::alert{type="success"}
+This is a success message!
+::
+
 ::alert{type="warning"}
 This is a warning message!
+::
+
+::alert{type="danger"}
+This is a danger message!
 ::
 
 https://comark.dev/play/editor?example=all-features
@@ -117,6 +156,6 @@ test built-in components
 
 ***we do need a UI for this***
 
-## <a id="chapter-1" href="#chapter-1"></a>Chapter 1: The Beginning
+<!-- ## <a id="chapter-1" href="#chapter-1"></a>Chapter 1: The Beginning
 
-## <a id="chapter-2" href="#chapter-2"><a>Chapter 2: Next Move
+## <a id="chapter-2" href="#chapter-2"><a>Chapter 2: Next Move -->

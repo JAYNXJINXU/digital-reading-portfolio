@@ -97,5 +97,24 @@ export const resolveTheme = (theme: Theme): 'light' | 'dark' => {
     }
     return theme
 }
-// https://github.com/nuxt/ui/blob/v4/src/theme/alert.ts -> reference
-// https://flowbite.com/docs/components/alerts/
+
+export type ResolvedTheme = Exclude<Theme, 'system'>
+export type AlertType = 'info' | 'warning' | 'success' | 'danger'
+
+// change colors later
+export const alertThemes = {
+    light: {
+        info: 'bg-[#209fb5]/10 border-[#209fb5]/40 text-[#4c4f69]',
+        warning: 'bg-[#df8e1d]/10 border-[#df8e1d]/40 text-[#4c4f69]',
+        success: 'bg-[#40a02b]/10 border-[#40a02b]/40 text-[#4c4f69]',
+        danger: 'bg-[#d20f39]/10 border-[#d20f39]/40 text-[#4c4f69]',
+    },
+    dark: {
+        info: 'bg-[#7dc4e4]/10 border-[#7dc4e4]/40 text-[#cad3f5]',
+        warning: 'bg-[#eed49f]/10 border-[#eed49f]/40 text-[#cad3f5]',
+        success: 'bg-[#a6da95]/10 border-[#a6da95]/40 text-[#cad3f5]',
+        danger: 'bg-[#ed8796]/10 border-[#ed8796]/40 text-[#cad3f5]',
+    },
+} satisfies Record<ResolvedTheme, Record<AlertType, string>>
+
+

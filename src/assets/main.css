@@ -5,7 +5,27 @@
 
 /* MARKDOWN */
 #md h1 {
-    font-size: 2em;
+    font-size: 2rem;
+}
+
+#md h2 {
+    font-size: 1.5rem;
+}
+
+#md h3 {
+    font-size: 1.17rem;
+}
+
+#md h4 {
+    font-size: 1rem;
+}
+
+#md h5 {
+    font-size: 0.83rem;
+}
+
+#md h6 {
+    font-size: 0.67rem;
 }
 
 #md table {
