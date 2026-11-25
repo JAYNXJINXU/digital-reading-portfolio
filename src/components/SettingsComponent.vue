@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { modal, settingsSidebarItems, settingsThemes, settingsWidth } from '@/composables/constants'
+import { modal, settingsContent, settingsSidebarItems, settingsThemes, settingsWidth } from '@/composables/constants'
 import { layoutSize, setLayoutSize } from '@/composables/sizing'
 import { setTheme, themeState } from '@/lib/switch'
 import { resolveTheme, themes } from '@/composables/themes'
+import { propertyState, setProperty } from '@/lib/list'
 
 const { modalToggle } = defineProps<{
     modalToggle?: boolean
@@ -72,7 +73,7 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
                                 </button>
                             </section> -->
                             <section :class="modal.setting.themeSection">
-                                <h3 :class="[modal.setting.h3, tR.text]">Default Themes</h3>
+                                <h3 :class="modal.setting.h2">Default Themes</h3>
                                 <section :class="modal.setting.sectionFlex">
                                     <button
                                         v-for="t in settingsThemes"
@@ -144,7 +145,29 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
                     </section>
                     <section v-if="activeTab === 'content'">
                         <h1 :class="[modal.content.placeholderHeader, tR.text]">{{ activeTab }}</h1>
-                        <section :class="[modal.content.placeholderText, tR.subtext0]">
+                        <section :class="[tR.subtext0]">
+                            <!-- <p>Settings for {{ activeTab }} tab goes here.</p> -->
+                            <section>
+                                    <h2 :class="modal.setting.h2">Content Property</h2>
+                                    <section
+                                        v-for="o in settingsContent"
+                                        :key="o.id"
+                                    >
+                                    <button
+                                        @click="setProperty(o.id)"
+                                        :title="o.desc"
+                                        :class="[
+                                            [modal.setting.text1, tR.text],
+                                            propertyState == o.id ? [modal.setting.widthButtonsActive, tR.surface2] :  [modal.setting.widthButtons, `hover:${tR.surface0}`]
+                                        ]"
+                                    >{{ o.label }}</button>
+                                    </section>
+                                </section>
+                        </section>
+                    </section>
+                    <section v-if="activeTab === 'about'">
+                        <h1 :class="[modal.content.placeholderHeader, tR.text]">{{ activeTab }}</h1>
+                        <section :class="[tR.subtext0]">
                             <p>Settings for {{ activeTab }} tab goes here.</p>
                         </section>
                     </section>

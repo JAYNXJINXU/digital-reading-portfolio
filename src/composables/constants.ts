@@ -1,3 +1,4 @@
+import type { PropertyType } from '@/lib/list'
 import type { LayoutSize } from './sizing'
 import { themes } from './themes'
 
@@ -68,13 +69,18 @@ export const modal = {
 export const contentList = {
     routerLinkBack: 'inline-block border px-4 py-2.5 mt-5',
     grid: 'my-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-10',
-    gridContent: 'bg-neutral-primary-soft block p-6 border border-default shadow-xs',
+    gridContent: 'block p-6 border border-default shadow-xs',
     h5: 'mt-6 mb-2 text-2xl font-semibold tracking-tight text-heading',
     routerLinkGo: 'inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none',
     p: 'mb-6 text-body',
     palceholderImage: {
-        link: 'https://placehold.co/160x90?font=roboto'
+        // link: 'https://placehold.co/160x90?font=roboto'
+        link: 'https://placehold.co/160x90?text=Placeholder\ Image&font=roboto'
     }
+}
+
+export const markdownCodeBlock = {
+    codeBlock: 'bg-white'
 }
 
 export const currentSettings = {
@@ -90,6 +96,10 @@ export const settingsSidebarItems = {
         id: 'content',
         label: 'Content'
     },
+    about: {
+        id: 'about',
+        label: 'About'
+    }
 }
 
 export const settingsThemes = {
@@ -123,20 +133,20 @@ export const settingsWidth: { id: LayoutSize, label: string, desc: string }[] = 
     // }
 ]
 
-export const settingsContent = {
-    title: {
+export const settingsContent: { id: PropertyType, label: string, desc: string }[] = [
+    {
         id: 'title',
         label: 'Title',
         desc: 'Title only',
     },
-    sparse: {
+    {
         id: 'sparse',
         label: 'Sparse',
-        desc: 'Title and Author',
+        desc: 'Title, Author, & Publish Date',
     },
-    verbose: {
+    {
         id: 'verbose',
         label: 'Verbose',
-        desc: 'Title, Author, and Publish Date',
+        desc: 'Title, Author, Tags, & Publish Date',
     },
-}
+]
