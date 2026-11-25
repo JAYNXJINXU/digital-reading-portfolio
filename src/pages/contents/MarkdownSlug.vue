@@ -10,6 +10,7 @@ import { themeState } from '@/lib/switch'
 import { useRoute } from 'vue-router'
 import { themes, type Theme } from '@/composables/themes'
 import Alert from '@/components/Markdown/MarkdownAlert.vue'
+import MarkdownCodeBlock from '@/components/Markdown/MarkdownCodeBlock.vue'
 import MarkdownContent from '@/components/Markdown/MarkdownContent.vue'
 
 const props = defineProps<{
@@ -30,7 +31,7 @@ const entry: ContentEntry = typeof requestedEntry === 'string' && Object.prototy
 const content = await getContent(route.params.slug as string, contentFilesByEntry[entry])
 
 const components = {
-    markdownContent: MarkdownContent,
+    codeBlock: MarkdownCodeBlock,
     alert: Alert,
     math: Math,
 }
