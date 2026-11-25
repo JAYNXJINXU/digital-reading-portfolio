@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { modal, settingsContent, settingsSidebarItems, settingsThemes, settingsWidth } from '@/composables/constants'
+import { about, modal, settingsContent, settingsSidebarItems, settingsThemes, settingsWidth } from '@/composables/constants'
 import { layoutSize, setLayoutSize } from '@/composables/sizing'
 import { setTheme, themeState } from '@/lib/switch'
 import { resolveTheme, themes } from '@/composables/themes'
 import { propertyState, setProperty } from '@/lib/list'
+import { aboutString } from '@/composables/strings'
 
 const { modalToggle } = defineProps<{
     modalToggle?: boolean
@@ -167,8 +168,19 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
                     </section>
                     <section v-if="activeTab === 'about'">
                         <h1 :class="[modal.content.placeholderHeader, tR.text]">{{ activeTab }}</h1>
-                        <section :class="[tR.subtext0]">
-                            <p>Settings for {{ activeTab }} tab goes here.</p>
+                        <p>This website is powered by : </p>
+                        <section :class="about.aboutGrid">
+                            <section
+                                v-for="a in aboutString"
+                                :key="a.id"
+                                :class="[tR.subtext0, about.aboutContent]"
+                            >
+                                <!-- <p>Settings for {{ activeTab }} tab goes here.</p> -->
+                                <section>
+                                    <img :src="a.img" :alt="a.alt" :title="a.title" />
+                                    <a :href="a.link" target="_blank">{{ a.title }}</a>
+                                </section>
+                            </section>
                         </section>
                     </section>
                 </main>

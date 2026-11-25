@@ -79,6 +79,11 @@ export const contentList = {
     }
 }
 
+export const about = {
+    aboutGrid: 'grid grid-cols-2 sm:grid-cols-3 gap-4',
+    aboutContent: 'flex flex-col items-center justify-center p-3'
+}
+
 export const markdownCodeBlock = {
     codeBlock: 'bg-white'
 }
