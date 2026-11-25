@@ -26,16 +26,17 @@ export const themeState = computed<ResolvedTheme>(() => {
     return preference.value as ResolvedTheme
 })
 
-export function setTheme(value: string) {
+export const setTheme = (value: string) => {
     if (themeArr.includes(value as ThemePreference)) {
         preference.value = value as ThemePreference
     }
 }
 
-export function toggleTheme() {
+export const toggleTheme = () => {
     setTheme(themeState.value === 'dark' ? 'light' : 'dark')
 }
 
+// I don't think we have use for this anymore
 watch(preference, (value) => {
     localStorage.setItem(STORAGE_KEY, value)
 })
