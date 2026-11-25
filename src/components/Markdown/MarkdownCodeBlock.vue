@@ -45,7 +45,7 @@ const parsedMeta = computed(() => {
 <template>
     <section :class="markdownCodeBlock.codeBlock">
         <p v-if="parsedMeta.lang || parsedMeta.file">
-            <span>{{ lang }}</span>&nbsp;<span>{{ file }}</span>
+            <span>{{ parsedMeta.lang }}</span>&nbsp;<span>{{ parsedMeta.file }}</span>
         </p>
         <slot v-if="!parsedMeta.fromSlot" />
     </section>
