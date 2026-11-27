@@ -64,5 +64,5 @@ export const setProperty = (p: PropertyType) => {
 }
 
 export const properties = {
-    defaults: (p: PropertyType = 'sparse') => propertyMap[p]
+    defaults: (p: PropertyType = 'sparse') => propertyMap[p],
 }

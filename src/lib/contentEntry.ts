@@ -1,25 +1,24 @@
-import { blogFiles, contentFiles, memberFiles, PPEFiles, whyFiles, testFiles } from './glob'
+import { blogFiles, contentFiles, individualFiles, PPEFiles, whyFiles, testFiles } from './glob'
 import { getAllContent, type PostMeta } from './content'
 import { jumbotronRouterString, jumbotronString } from '@/composables/strings'
 
 export const contentFilesByEntry = {
     content: contentFiles,
     blog: blogFiles,
-    members: memberFiles,
+    individual: individualFiles,
     why: whyFiles,
     ppe: PPEFiles,
-    test: testFiles
+    test: testFiles,
 } as const
 
 export type ContentEntry = keyof typeof contentFilesByEntry
 
 const contentByEntry = Object.fromEntries(
     await Promise.all(
-        (Object.keys(contentFilesByEntry) as ContentEntry[]).map(async (e) => [
-            e,
-            await getAllContent(contentFilesByEntry[e]),
-        ] as const),
-    )
+        (Object.keys(contentFilesByEntry) as ContentEntry[]).map(
+            async (e) => [e, await getAllContent(contentFilesByEntry[e])] as const,
+        ),
+    ),
 ) as Record<ContentEntry, PostMeta[]>
 
 type CardSpec = {
@@ -40,7 +39,7 @@ const cardSpecs = [
     },
     {
         id: 'names',
-        entry: 'members',
+        entry: 'individual',
         slug: 'names',
         heading: jumbotronString.names,
         button: jumbotronRouterString.members,
@@ -77,5 +76,5 @@ const cardSpecs = [
 
 export const cards = cardSpecs.map((c) => ({
     ...c,
-    post: contentByEntry[c.entry].find((p) => p.slug === c.slug)
+    post: contentByEntry[c.entry].find((p) => p.slug === c.slug),
 }))

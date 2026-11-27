@@ -29,7 +29,7 @@ const selectedEntry = computed<ContentEntry>(() => {
 
     return typeof entry === 'string' &&
         Object.prototype.hasOwnProperty.call(contentFilesByEntry, entry)
-        ? entry as ContentEntry
+        ? (entry as ContentEntry)
         : 'blog'
 })
 
@@ -38,8 +38,7 @@ watch(
     async (entry) => {
         const files = contentFilesByEntry[entry]
         const posts = await getAllContent(files)
-        content.value = posts,
-        propertyState
+        ;((content.value = posts), propertyState)
     },
     { immediate: true },
 )
@@ -47,31 +46,50 @@ watch(
 
 <template>
     <section :class="[sizings.default, layoutSizeClass, 'px-4 py-8']">
-        <RouterLink to="/" :class="[contentList.routerLinkBack, t.base, t.subtext1]"> &larr; Back to index </RouterLink>
-        <section
-            :class="[contentList.grid, t.text]"
-        >
-            <section
-                v-for="c in content"
-                :key="c.slug"
-                :class="[contentList.gridContent, t.base]"
-            >
-            <img class="rounded-base" :src="contentList.palceholderImage.link" alt="placeholder image" />
-            <section v-if="propertyState === 'title'">
-                <h5 :class="[contentList.h5]" :title="`${c.title} : ${c.description}`">{{ c.slug }}</h5>
-            </section>
-            <section v-if="propertyState === 'sparse'">
-                <h5 :class="[contentList.h5]" :title="`${c.title} : ${c.description}`">{{ c.slug }}</h5>
-                <p :class="[contentList.p, t.text]">Authors : <span :class="[t.subtext0]">{{ c.authors.join(', ') }}</span></p>
-                <p :class="[contentList.p, t.text]">Publish Date: : <span :class="[t.subtext0]">{{ c.pubDate }}</span></p>
-            </section>
-            <section v-if="propertyState === 'verbose'">
-                <h5 :class="[contentList.h5]" :title="`${c.title} : ${c.description}`">{{ c.slug }}</h5>
-                <p :class="[contentList.p, t.text]">Authors : <span :class="[t.subtext0]">{{ c.authors.join(', ') }}</span></p>
-                <p :class="[contentList.p, t.text]">Tags : <span :class="[t.subtext0]">{{ c.tags }}</span></p>
-                <p :class="[contentList.p, t.text]">Publish Date: : <span :class="[t.subtext0]">{{ c.pubDate }}</span></p>
-            </section>
-                <RouterLink :to="{ path: `/content/${c.slug}`, query: { entry: selectedEntry } }" :class="[contentList.routerLinkGo]">
+        <RouterLink to="/" :class="[contentList.routerLinkBack, t.base, t.subtext1]">
+            &larr; Back to index
+        </RouterLink>
+        <section :class="[contentList.grid, t.text]">
+            <section v-for="c in content" :key="c.slug" :class="[contentList.gridContent, t.base]">
+                <img
+                    class="rounded-base"
+                    :src="contentList.palceholderImage.link"
+                    alt="placeholder image"
+                />
+                <section v-if="propertyState === 'title'">
+                    <h5 :class="[contentList.h5]" :title="`${c.title} : ${c.description}`">
+                        {{ c.slug }}
+                    </h5>
+                </section>
+                <section v-if="propertyState === 'sparse'">
+                    <h5 :class="[contentList.h5]" :title="`${c.title} : ${c.description}`">
+                        {{ c.slug }}
+                    </h5>
+                    <p :class="[contentList.p, t.text]">
+                        Authors : <span :class="[t.subtext0]">{{ c.authors.join(', ') }}</span>
+                    </p>
+                    <p :class="[contentList.p, t.text]">
+                        Publish Date: : <span :class="[t.subtext0]">{{ c.pubDate }}</span>
+                    </p>
+                </section>
+                <section v-if="propertyState === 'verbose'">
+                    <h5 :class="[contentList.h5]" :title="`${c.title} : ${c.description}`">
+                        {{ c.slug }}
+                    </h5>
+                    <p :class="[contentList.p, t.text]">
+                        Authors : <span :class="[t.subtext0]">{{ c.authors.join(', ') }}</span>
+                    </p>
+                    <p :class="[contentList.p, t.text]">
+                        Tags : <span :class="[t.subtext0]">{{ c.tags }}</span>
+                    </p>
+                    <p :class="[contentList.p, t.text]">
+                        Publish Date : <span :class="[t.subtext0]">{{ c.pubDate }}</span>
+                    </p>
+                </section>
+                <RouterLink
+                    :to="{ path: `/content/${c.slug}`, query: { entry: selectedEntry } }"
+                    :class="[contentList.routerLinkGo]"
+                >
                     {{ contentString.button }} &rarr;
                 </RouterLink>
             </section>

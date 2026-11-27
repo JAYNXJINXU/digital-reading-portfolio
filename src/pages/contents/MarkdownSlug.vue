@@ -26,7 +26,11 @@ const t = computed(() => themes[rT.value])
 const route = useRoute()
 
 const requestedEntry = route.query.entry
-const entry: ContentEntry = typeof requestedEntry === 'string' && Object.prototype.hasOwnProperty.call(contentFilesByEntry, requestedEntry) ? requestedEntry as ContentEntry : 'blog'
+const entry: ContentEntry =
+    typeof requestedEntry === 'string' &&
+    Object.prototype.hasOwnProperty.call(contentFilesByEntry, requestedEntry)
+        ? (requestedEntry as ContentEntry)
+        : 'blog'
 
 const content = await getContent(route.params.slug as string, contentFilesByEntry[entry])
 
@@ -40,7 +44,10 @@ const components = {
 <template>
     <article :class="[sizings.default, layoutSizeClass, 'px-4 py-8']">
         <header>
-            <RouterLink :to="{ path: '/content', query: { entry } }" :class="[contentList.routerLinkBack, t.crust, t.subtext1, 'mb-5']">
+            <RouterLink
+                :to="{ path: '/content', query: { entry } }"
+                :class="[contentList.routerLinkBack, t.crust, t.subtext1, 'mb-5']"
+            >
                 &larr; Back to all posts
             </RouterLink>
         </header>

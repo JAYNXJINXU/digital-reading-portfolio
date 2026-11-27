@@ -22,13 +22,7 @@ const t = computed(() => themes[rT.value])
         <article
             v-for="card in cards"
             :key="card.id"
-            :class="[
-                t.base,
-                t.text,
-                jumbotron.position,
-                jumbotron.background,
-                jumbotron.card,
-            ]"
+            :class="[t.base, t.text, jumbotron.position, jumbotron.background, jumbotron.card]"
         >
             <h2 :class="jumbotron.heading1">
                 {{ card.post?.title ?? card.heading }}

@@ -101,7 +101,6 @@ export const resolveTheme = (theme: Theme): 'light' | 'dark' => {
 export type ResolvedTheme = Exclude<Theme, 'system'>
 export type AlertType = 'info' | 'warning' | 'success' | 'danger'
 
-// change colors later
 export const alertThemes = {
     light: {
         info: 'bg-[#209fb5]/10 border-[#209fb5]/40 text-[#4c4f69]',
@@ -116,5 +115,3 @@ export const alertThemes = {
         danger: 'bg-[#ed8796]/10 border-[#ed8796]/40 text-[#cad3f5]',
     },
 } satisfies Record<ResolvedTheme, Record<AlertType, string>>
-
-

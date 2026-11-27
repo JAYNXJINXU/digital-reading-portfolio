@@ -34,9 +34,10 @@
     width: 100%;
 }
 
-#md th, td {
-  border: 1px solid black;
-  padding: 8px 12px;
+#md th,
+td {
+    border: 1px solid black;
+    padding: 8px 12px;
 }
 /* MARKDOWN */
 

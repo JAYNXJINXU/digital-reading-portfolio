@@ -6,7 +6,7 @@ export const fontAwesomeStrings = {
     lightbulb: 'fa-regular fa-lightbulb',
     moon: 'fa-regular fa-moon',
     gear: 'fa-solid fa-gear',
-    home: 'fa-solid fa-house'
+    home: 'fa-solid fa-house',
 }
 
 export const transition = {
@@ -15,7 +15,7 @@ export const transition = {
 
 export const navbar = {
     nav: 'w-full z-20 top-0',
-    navSection: 'flex flex-wrap items-center justify-between mx-auto p-4'
+    navSection: 'flex flex-wrap items-center justify-between mx-auto p-4',
 }
 
 export const jumbotron = {
@@ -26,15 +26,16 @@ export const jumbotron = {
     text: 'mb-8 text-base font-normal text-body md:text-xl',
     relative: 'relative',
     button: 'absolute end-1.5 bottom-1.5 font-medium leading-5 text-xs px-3 py-1.5 hover:ring-1',
-    card: 'mb-5 inline-block w-full break-inside-avoid min-h-53'
+    card: 'mb-5 inline-block w-full break-inside-avoid min-h-53',
 }
 
 export const modal = {
-    mainModal: 'fixed z-50 flex items-center justify-center w-full max-h-full p-4 overflow-x-hidden overflow-y-auto inset-0 bg-gray-900/70 backdrop-blur-sm',
+    mainModal:
+        'fixed z-50 flex items-center justify-center w-full max-h-full p-4 overflow-x-hidden overflow-y-auto inset-0 bg-gray-900/70 backdrop-blur-sm',
     side: 'min-h-150 max-h-150 w-60 py-10 px-4 flex flex-col items-end shrink-0',
     nav: {
         mainNav: 'w-48 space-y-0.5',
-        text: 'px-2.5 py-1.5 text-xs font-bold uppercase tracking-wider'
+        text: 'px-2.5 py-1.5 text-xs font-bold uppercase tracking-wider',
     },
     sideSetting: {
         activeTabButton: 'w-full text-left px-2.5 py-1.5 text-[15px] font-medium my-2',
@@ -58,12 +59,12 @@ export const modal = {
         ternarySync1: 'border-2',
         ternarySync2: 'bg-transparent',
         widthButtons: 'relative w-full my-2 p-2 border-2 focus:outline-none',
-        widthButtonsActive: 'relative w-full my-2 p-2 border-2 focus:outline-none'
+        widthButtonsActive: 'relative w-full my-2 p-2 border-2 focus:outline-none',
     },
     content: {
         placeholderHeader: 'text-xl font-semibold capitalize mb-2',
-        placeholderText: 'text-sm'
-    }
+        placeholderText: 'text-sm',
+    },
 }
 
 export const contentList = {
@@ -71,21 +72,22 @@ export const contentList = {
     grid: 'my-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:gap-10',
     gridContent: 'block p-6 border border-default shadow-xs',
     h5: 'mt-6 mb-2 text-2xl font-semibold tracking-tight text-heading',
-    routerLinkGo: 'inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none',
+    routerLinkGo:
+        'inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none',
     p: 'mb-6 text-body',
     palceholderImage: {
         // link: 'https://placehold.co/160x90?font=roboto'
-        link: 'https://placehold.co/160x90?text=Placeholder\ Image&font=roboto'
-    }
+        link: 'https://placehold.co/160x90?text=Placeholder\ Image&font=roboto',
+    },
 }
 
 export const about = {
     aboutGrid: 'grid grid-cols-2 sm:grid-cols-3 gap-4',
-    aboutContent: 'flex flex-col items-center justify-center p-3'
+    aboutContent: 'flex flex-col items-center justify-center p-3',
 }
 
 export const markdownCodeBlock = {
-    codeBlock: 'bg-white'
+    codeBlock: 'bg-white',
 }
 
 export const currentSettings = {
@@ -95,16 +97,16 @@ export const currentSettings = {
 export const settingsSidebarItems = {
     appearance: {
         id: 'appearance',
-        label: 'Appearance'
+        label: 'Appearance',
     },
     content: {
         id: 'content',
-        label: 'Content'
+        label: 'Content',
     },
     about: {
         id: 'about',
-        label: 'About'
-    }
+        label: 'About',
+    },
 }
 
 export const settingsThemes = {
@@ -117,10 +119,10 @@ export const settingsThemes = {
         id: 'dark',
         name: 'Dark',
         bgClass: themes.dark.base,
-    }
+    },
 }
 
-export const settingsWidth: { id: LayoutSize, label: string, desc: string }[] =  [
+export const settingsWidth: { id: LayoutSize; label: string; desc: string }[] = [
     {
         id: 'compact',
         label: 'Compact',
@@ -138,7 +140,7 @@ export const settingsWidth: { id: LayoutSize, label: string, desc: string }[] = 
     // }
 ]
 
-export const settingsContent: { id: PropertyType, label: string, desc: string }[] = [
+export const settingsContent: { id: PropertyType; label: string; desc: string }[] = [
     {
         id: 'title',
         label: 'Title',

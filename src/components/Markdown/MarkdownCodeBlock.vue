@@ -16,28 +16,33 @@ const parsedMeta = computed(() => {
         return {
             file: props.file,
             lang: props.lang,
-            fromSlot: false
+            fromSlot: false,
         }
     }
 
     const vnodes = slots.default?.() || []
     const firstChild = vnodes[0]?.children
 
-    const rawText = typeof firstChild === 'string' ? firstChild : Array.isArray(firstChild) && typeof firstChild[0] === 'string' ? firstChild[0] : ''
+    const rawText =
+        typeof firstChild === 'string'
+            ? firstChild
+            : Array.isArray(firstChild) && typeof firstChild[0] === 'string'
+              ? firstChild[0]
+              : ''
 
     if (rawText.includes('-')) {
-        const [file, lang] = rawText.split('-').map(s => s.trim())
+        const [file, lang] = rawText.split('-').map((s) => s.trim())
         return {
             file,
             lang,
-            fromSlot: true
+            fromSlot: true,
         }
     }
 
     return {
         file: '',
         lang: '',
-        fromSlot: false
+        fromSlot: false,
     }
 })
 </script>
@@ -45,7 +50,8 @@ const parsedMeta = computed(() => {
 <template>
     <section :class="markdownCodeBlock.codeBlock">
         <p v-if="parsedMeta.lang || parsedMeta.file">
-            <span>{{ parsedMeta.lang }}</span>&nbsp;<span>{{ parsedMeta.file }}</span>
+            <span>{{ parsedMeta.lang }}</span
+            >&nbsp;<span>{{ parsedMeta.file }}</span>
         </p>
         <slot v-if="!parsedMeta.fromSlot" />
     </section>

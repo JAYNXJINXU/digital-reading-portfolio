@@ -30,7 +30,6 @@ const rT = computed(() =>
 )
 
 const t = computed(() => themes[rT.value])
-
 </script>
 
 <template>

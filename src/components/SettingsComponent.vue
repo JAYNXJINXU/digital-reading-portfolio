@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { about, modal, settingsContent, settingsSidebarItems, settingsThemes, settingsWidth } from '@/composables/constants'
+import {
+    about,
+    modal,
+    settingsContent,
+    settingsSidebarItems,
+    settingsThemes,
+    settingsWidth,
+} from '@/composables/constants'
 import { layoutSize, setLayoutSize } from '@/composables/sizing'
 import { setTheme, themeState } from '@/lib/switch'
 import { resolveTheme, themes } from '@/composables/themes'
@@ -38,15 +45,23 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
 
 <template>
     <Transition name="fade">
-        <section v-if="modalToggle"
+        <section
+            v-if="modalToggle"
             :class="[modal.mainModal, { 'opacity-0': !modalToggle, 'opacity-100': modalToggle }]"
         >
             <aside :class="[modal.side, tR.base]">
                 <nav :class="modal.nav.mainNav">
                     <p :class="[modal.nav.text, tR.text]">Settings</p>
                     <button
-                        v-for="i in settingsSidebarItems" :key="i.id"           @click="activeTab = i.id"
-                        :class="[modal.sideSetting.activeTabButton, activeTab === i.id ? [modal.sideSetting.activeTabButtonText, tR.mantle, tR.subtext1] : [tR.mantle, tR.subtext1]]"
+                        v-for="i in settingsSidebarItems"
+                        :key="i.id"
+                        @click="activeTab = i.id"
+                        :class="[
+                            modal.sideSetting.activeTabButton,
+                            activeTab === i.id
+                                ? [modal.sideSetting.activeTabButtonText, tR.mantle, tR.subtext1]
+                                : [tR.mantle, tR.subtext1],
+                        ]"
                     >
                         {{ i.label }}
                     </button>
@@ -80,46 +95,80 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
                                         v-for="t in settingsThemes"
                                         :key="t.id"
                                         :title="t.name"
-                                        @click="selectTheme(t.id); syncWithSystem = false"
+                                        @click="
+                                            selectTheme(t.id);
+                                            syncWithSystem = false
+                                        "
                                         :class="[
-                                        modal.setting.themeButtons1,
-                                        t.bgClass,
-                                        !syncWithSystem && selectedTheme === t.id
-                                            ? [modal.setting.sync1, tR.mantle]
-                                            : `hover:${tR.crust}`
+                                            modal.setting.themeButtons1,
+                                            t.bgClass,
+                                            !syncWithSystem && selectedTheme === t.id
+                                                ? [modal.setting.sync1, tR.mantle]
+                                                : `hover:${tR.crust}`,
                                         ]"
                                     >
                                         <span
                                             v-if="!syncWithSystem && selectedTheme === t.id"
                                             :class="[modal.setting.span1, tR.lavender, tR.text]"
+                                        >
+                                            <svg
+                                                class="w-3 h-3 stroke-3"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
                                             >
-                                            <svg class="w-3 h-3 stroke-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M5 13l4 4L19 7"
+                                                />
                                             </svg>
                                         </span>
                                     </button>
                                     <button
-                                        @click="syncWithSystem = true; setTheme('system')"
+                                        @click="
+                                            syncWithSystem = true;
+                                            setTheme('system')
+                                        "
                                         :class="[
-                                        [modal.setting.themeButtons2, tR.text, tR.crust],
-                                        syncWithSystem
-                                            ? [modal.setting.ternarySync1, tR.mauve, tR.text, tR.base]
-                                            : [modal.setting.ternarySync2, tR.crust]
+                                            [modal.setting.themeButtons2, tR.text, tR.crust],
+                                            syncWithSystem
+                                                ? [
+                                                      modal.setting.ternarySync1,
+                                                      tR.mauve,
+                                                      tR.text,
+                                                      tR.base,
+                                                  ]
+                                                : [modal.setting.ternarySync2, tR.crust],
                                         ]"
                                     >
-                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                        <svg
+                                            class="w-5 h-5"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                                            />
                                         </svg>
-                                            <span
-                                            v-if="syncWithSystem"
-                                            :class="[
-                                                modal.setting.span1
-                                            ]"
+                                        <span v-if="syncWithSystem" :class="[modal.setting.span1]">
+                                            <svg
+                                                class="w-3 h-3 stroke-3"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
                                             >
-                                                <svg class="w-3 h-3 stroke-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                                </svg>
-                                            </span>
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M5 13l4 4L19 7"
+                                                />
+                                            </svg>
+                                        </span>
                                     </button>
                                 </section>
 
@@ -127,18 +176,25 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
 
                                 <section>
                                     <h2 :class="modal.setting.h2">Width</h2>
-                                    <section
-                                        v-for="o in settingsWidth"
-                                        :key="o.id"
-                                    >
-                                    <button
-                                        @click="setLayoutSize(o.id)"
-                                        :title="o.desc"
-                                        :class="[
-                                            [modal.setting.text1, tR.text],
-                                            layoutSize == o.id ? [modal.setting.widthButtonsActive, tR.surface2] :  [modal.setting.widthButtons, `hover:${tR.surface0}`]
-                                        ]"
-                                    >{{ o.label }}</button>
+                                    <section v-for="o in settingsWidth" :key="o.id">
+                                        <button
+                                            @click="setLayoutSize(o.id)"
+                                            :title="o.desc"
+                                            :class="[
+                                                [modal.setting.text1, tR.text],
+                                                layoutSize == o.id
+                                                    ? [
+                                                          modal.setting.widthButtonsActive,
+                                                          tR.surface2,
+                                                      ]
+                                                    : [
+                                                          modal.setting.widthButtons,
+                                                          `hover:${tR.surface0}`,
+                                                      ],
+                                            ]"
+                                        >
+                                            {{ o.label }}
+                                        </button>
                                     </section>
                                 </section>
                             </section>
@@ -149,26 +205,30 @@ const tR = computed(() => themes[resolveTheme(rT.value)])
                         <section :class="[tR.subtext0]">
                             <!-- <p>Settings for {{ activeTab }} tab goes here.</p> -->
                             <section>
-                                    <h2 :class="modal.setting.h2">Content Property</h2>
-                                    <section
-                                        v-for="o in settingsContent"
-                                        :key="o.id"
-                                    >
+                                <h2 :class="modal.setting.h2">Content Property</h2>
+                                <section v-for="o in settingsContent" :key="o.id">
                                     <button
                                         @click="setProperty(o.id)"
                                         :title="o.desc"
                                         :class="[
                                             [modal.setting.text1, tR.text],
-                                            propertyState == o.id ? [modal.setting.widthButtonsActive, tR.surface2] :  [modal.setting.widthButtons, `hover:${tR.surface0}`]
+                                            propertyState == o.id
+                                                ? [modal.setting.widthButtonsActive, tR.surface2]
+                                                : [
+                                                      modal.setting.widthButtons,
+                                                      `hover:${tR.surface0}`,
+                                                  ],
                                         ]"
-                                    >{{ o.label }}</button>
-                                    </section>
+                                    >
+                                        {{ o.label }}
+                                    </button>
                                 </section>
+                            </section>
                         </section>
                     </section>
                     <section v-if="activeTab === 'about'">
                         <h1 :class="[modal.content.placeholderHeader, tR.text]">{{ activeTab }}</h1>
-                        <p>This website is powered by : </p>
+                        <p>This website is powered by :</p>
                         <section :class="about.aboutGrid">
                             <section
                                 v-for="a in aboutString"

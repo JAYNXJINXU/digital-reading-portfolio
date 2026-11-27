@@ -10,7 +10,7 @@ export const contentFiles = import.meta.glob('../../content/*.md', {
     eager: true,
 }) as Record<string, string>
 
-export const memberFiles = import.meta.glob('../../content/members/*.md', {
+export const individualFiles = import.meta.glob('../../content/individual/*.md', {
     query: '?raw',
     import: 'default',
     eager: true,

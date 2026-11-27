@@ -15,14 +15,7 @@ const t = computed(() => themes[rT.value])
 </script>
 
 <template>
-    <section
-        :class="[
-            t.base,
-            'border p-6',
-            t.text,
-            t.crust,
-        ]"
-    >
+    <section :class="[t.base, 'border p-6', t.text, t.crust]">
         <slot />
     </section>
 </template>
